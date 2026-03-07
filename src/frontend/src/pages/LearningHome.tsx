@@ -115,6 +115,26 @@ interface Props {
 export default function LearningHome({ onNavigate }: Props) {
   return (
     <div className="min-h-screen">
+      {/* YouTube Channel Top Banner */}
+      <a
+        href="https://www.youtube.com/@The-Language-Hub"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-ocid="home.youtube_banner.link"
+        className="flex items-center justify-center gap-3 py-2.5 px-4 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        style={{ background: "oklch(0.47 0.24 25)" }}
+      >
+        <Youtube className="w-4 h-4 fill-white shrink-0" />
+        <span>Watch Free English Lessons on YouTube</span>
+        <span
+          className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold"
+          style={{ background: "oklch(1 0 0 / 20%)" }}
+        >
+          @The-Language-Hub
+          <ArrowRight className="w-3 h-3" />
+        </span>
+      </a>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden gradient-hero py-20 md:py-28 px-4">
         {/* Dot grid decoration */}
@@ -442,7 +462,7 @@ export default function LearningHome({ onNavigate }: Props) {
 
               {/* Subscribe button */}
               <motion.a
-                href="https://www.youtube.com"
+                href="https://www.youtube.com/@The-Language-Hub"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
