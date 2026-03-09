@@ -33,7 +33,8 @@ export type Section =
   | "conversations"
   | "stories"
   | "course"
-  | "course-day";
+  | "course-day"
+  | "chat";
 
 interface Module {
   id: Section;

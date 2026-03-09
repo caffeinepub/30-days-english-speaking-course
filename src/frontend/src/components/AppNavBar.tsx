@@ -122,6 +122,13 @@ const navItems: NavItem[] = [
     color: "oklch(0.44 0.22 258)",
     dataOcid: "nav.stories.link",
   },
+  {
+    id: "chat",
+    label: "Chat",
+    icon: <MessageCircle className="w-4 h-4" />,
+    color: "oklch(0.50 0.26 195)",
+    dataOcid: "nav.chat.link",
+  },
 ];
 
 interface Props {

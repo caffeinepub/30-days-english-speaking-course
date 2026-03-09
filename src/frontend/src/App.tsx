@@ -30,6 +30,7 @@ const StoriesPage = lazy(() => import("./pages/StoriesPage"));
 const StudentLoginPage = lazy(() => import("./pages/StudentLoginPage"));
 const TensesPage = lazy(() => import("./pages/TensesPage"));
 const VowelsPage = lazy(() => import("./pages/VowelsPage"));
+const ChatPage = lazy(() => import("./pages/ChatPage"));
 
 // ─── Error Boundary ─────────────────────────────────────────────────────────
 
@@ -195,6 +196,8 @@ function AppInner() {
             onBack={() => handleNavigate("course")}
           />
         );
+      case "chat":
+        return <ChatPage />;
       default:
         return <LearningHome onNavigate={handleNavigate} />;
     }
