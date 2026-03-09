@@ -263,9 +263,44 @@ function OtpTimer({
   );
 }
 
+// ─── Switch Tab Prompt ────────────────────────────────────────────────────────
+
+function SwitchTabPrompt({
+  message,
+  actionLabel,
+  onAction,
+  ocid,
+}: {
+  message: string;
+  actionLabel: string;
+  onAction: () => void;
+  ocid: string;
+}) {
+  return (
+    <p
+      className="text-xs text-center mt-3"
+      style={{
+        color: "oklch(0.52 0.05 258)",
+        fontFamily: "'Outfit', sans-serif",
+      }}
+    >
+      {message}{" "}
+      <button
+        type="button"
+        data-ocid={ocid}
+        onClick={onAction}
+        className="font-bold underline underline-offset-2 transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 rounded-sm"
+        style={{ color: "oklch(0.28 0.12 258)" }}
+      >
+        {actionLabel}
+      </button>
+    </p>
+  );
+}
+
 // ─── Sign In Panel ──────────────────────────────────────────────────────────
 
-function SignInPanel() {
+function SignInPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
   const { login, isRegistered } = useStudentAuth();
   const [method, setMethod] = useState<MethodTab>("mobile");
   const [identifier, setIdentifier] = useState("");
@@ -457,13 +492,21 @@ function SignInPanel() {
           Sign In
         </span>
       </Button>
+
+      {/* Switch to Register */}
+      <SwitchTabPrompt
+        message="Don't have an account?"
+        actionLabel="Create Account"
+        onAction={onSwitchTab}
+        ocid="login.switch_to_register.button"
+      />
     </form>
   );
 }
 
 // ─── Register Panel ──────────────────────────────────────────────────────────
 
-function RegisterPanel() {
+function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
   const { register, isRegistered } = useStudentAuth();
 
   const [step, setStep] = useState<RegisterStep>(1);
@@ -740,6 +783,14 @@ function RegisterPanel() {
               >
                 {method === "facebook" ? "Continue" : "Send OTP"}
               </Button>
+
+              {/* Switch to Sign In — only on step 1 */}
+              <SwitchTabPrompt
+                message="Already have an account?"
+                actionLabel="Sign In"
+                onAction={onSwitchTab}
+                ocid="login.switch_to_signin.button"
+              />
             </form>
           </motion.div>
         )}
@@ -1210,7 +1261,7 @@ export default function StudentLoginPage() {
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.22 }}
                 >
-                  <SignInPanel />
+                  <SignInPanel onSwitchTab={() => setTopTab("register")} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -1220,7 +1271,7 @@ export default function StudentLoginPage() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.22 }}
                 >
-                  <RegisterPanel />
+                  <RegisterPanel onSwitchTab={() => setTopTab("signin")} />
                 </motion.div>
               )}
             </AnimatePresence>

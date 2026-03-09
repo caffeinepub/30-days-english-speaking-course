@@ -1,4 +1,11 @@
-import { Suspense, lazy, useState } from "react";
+import { Toaster } from "@/components/ui/sonner";
+import { AnimatePresence, motion } from "motion/react";
+import { Component, Suspense, lazy, useState } from "react";
+import type { ReactNode } from "react";
+import AppFooter from "./components/AppFooter";
+import AppNavBar from "./components/AppNavBar";
+import { StudentAuthProvider, useStudentAuth } from "./hooks/useStudentAuth";
+import type { Section } from "./pages/LearningHome";
 
 // Legacy type export — kept for backward compatibility with unused old pages
 export type AppPage =
@@ -6,12 +13,6 @@ export type AppPage =
   | { name: "dashboard" }
   | { name: "lesson"; dayOrder: number }
   | { name: "admin" };
-import { Toaster } from "@/components/ui/sonner";
-import { AnimatePresence, motion } from "motion/react";
-import AppFooter from "./components/AppFooter";
-import AppNavBar from "./components/AppNavBar";
-import { useStudentAuth } from "./hooks/useStudentAuth";
-import type { Section } from "./pages/LearningHome";
 
 // Lazy-loaded page components for code splitting
 const AuxiliariesPage = lazy(() => import("./pages/AuxiliariesPage"));
@@ -30,13 +31,109 @@ const StudentLoginPage = lazy(() => import("./pages/StudentLoginPage"));
 const TensesPage = lazy(() => import("./pages/TensesPage"));
 const VowelsPage = lazy(() => import("./pages/VowelsPage"));
 
+// ─── Error Boundary ─────────────────────────────────────────────────────────
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+}
+
+class ErrorBoundary extends Component<
+  { children: ReactNode },
+  ErrorBoundaryState
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div
+          className="min-h-screen flex items-center justify-center p-6"
+          style={{ background: "oklch(0.97 0.012 75)" }}
+        >
+          <div
+            className="max-w-md w-full rounded-2xl p-8 text-center shadow-card"
+            style={{
+              background: "oklch(1 0 0)",
+              border: "1px solid oklch(0.88 0.018 75)",
+            }}
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              style={{ background: "oklch(0.96 0.06 28)" }}
+            >
+              <span className="text-2xl">⚠️</span>
+            </div>
+            <h1
+              className="text-xl font-display font-bold mb-2"
+              style={{ color: "oklch(0.15 0.04 255)" }}
+            >
+              Something went wrong
+            </h1>
+            <p
+              className="text-sm mb-6"
+              style={{ color: "oklch(0.48 0.05 258)" }}
+            >
+              The app encountered an error. Please refresh the page to try
+              again.
+            </p>
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              style={{ background: "oklch(0.28 0.12 258)" }}
+            >
+              Refresh Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// ─── Page Loader ─────────────────────────────────────────────────────────────
+
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+  <div
+    className="flex flex-col items-center justify-center min-h-[60vh] gap-4"
+    data-ocid="app.loading_state"
+  >
+    <div
+      className="w-14 h-14 rounded-2xl flex items-center justify-center animate-pulse"
+      style={{ background: "oklch(0.93 0.08 258)" }}
+    >
+      <span className="text-2xl">📚</span>
+    </div>
+    <div className="flex gap-1.5">
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          className="w-2 h-2 rounded-full animate-bounce"
+          style={{
+            background: "oklch(0.28 0.12 258)",
+            animationDelay: `${i * 0.15}s`,
+          }}
+        />
+      ))}
+    </div>
+    <p className="text-sm font-body" style={{ color: "oklch(0.48 0.05 258)" }}>
+      Loading The Learning Hub…
+    </p>
   </div>
 );
 
-export default function App() {
+// ─── Inner App (requires StudentAuthProvider) ─────────────────────────────
+
+function AppInner() {
   const { isLoggedIn } = useStudentAuth();
   const [section, setSection] = useState<Section>("home");
   const [selectedCourseDay, setSelectedCourseDay] = useState<number>(1);
@@ -122,5 +219,17 @@ export default function App() {
       <AppFooter />
       <Toaster richColors position="bottom-right" />
     </div>
+  );
+}
+
+// ─── Root App with Provider ────────────────────────────────────────────────
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <StudentAuthProvider>
+        <AppInner />
+      </StudentAuthProvider>
+    </ErrorBoundary>
   );
 }
