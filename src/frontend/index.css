@@ -22,64 +22,64 @@
   :root {
     --radius: 1.25rem;
 
-    /* === Learning Point — Bright & Vibrant for Young Learners === */
-    --background: 0.98 0.006 85;
-    --foreground: 0.18 0.04 260;
+    /* === The Learning Hub — Classic Elegant Theme === */
+    --background: 0.97 0.012 75;         /* warm parchment cream */
+    --foreground: 0.15 0.04 255;         /* deep navy ink */
 
     --card: 1 0 0;
-    --card-foreground: 0.18 0.04 260;
+    --card-foreground: 0.15 0.04 255;
 
     --popover: 1 0 0;
-    --popover-foreground: 0.18 0.04 260;
+    --popover-foreground: 0.15 0.04 255;
 
-    /* Vivid violet primary */
-    --primary: 0.5 0.28 300;
+    /* Deep navy primary */
+    --primary: 0.28 0.12 258;
     --primary-foreground: 0.98 0 0;
 
-    /* Sunny yellow secondary */
-    --secondary: 0.95 0.06 95;
-    --secondary-foreground: 0.25 0.08 80;
+    /* Warm gold secondary */
+    --secondary: 0.92 0.06 78;
+    --secondary-foreground: 0.25 0.08 75;
 
-    --muted: 0.94 0.015 85;
-    --muted-foreground: 0.5 0.05 260;
+    --muted: 0.94 0.014 75;
+    --muted-foreground: 0.48 0.05 258;
 
-    /* Sky blue accent */
-    --accent: 0.92 0.07 220;
-    --accent-foreground: 0.25 0.12 240;
+    /* Classic teal accent */
+    --accent: 0.90 0.06 195;
+    --accent-foreground: 0.22 0.12 200;
 
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
 
-    --border: 0.88 0.025 85;
-    --input: 0.92 0.02 85;
-    --ring: 0.5 0.28 300;
+    --border: 0.88 0.018 75;
+    --input: 0.92 0.014 75;
+    --ring: 0.28 0.12 258;
 
-    /* Section colors — each vivid and distinct */
-    --tenses: 0.58 0.26 28;
-    --tenses-bg: 0.97 0.07 28;
-    --phonics: 0.54 0.24 160;
-    --phonics-bg: 0.95 0.08 160;
-    --auxiliaries: 0.52 0.28 265;
-    --auxiliaries-bg: 0.94 0.09 265;
-    --homophones: 0.56 0.26 310;
-    --homophones-bg: 0.96 0.08 310;
-    --vowels: 0.62 0.26 80;
-    --vowels-bg: 0.97 0.09 80;
+    /* Section colors — rich classic tones */
+    --tenses: 0.42 0.18 28;
+    --tenses-bg: 0.96 0.06 28;
+    --phonics: 0.38 0.16 175;
+    --phonics-bg: 0.94 0.07 175;
+    --auxiliaries: 0.35 0.16 258;
+    --auxiliaries-bg: 0.93 0.07 258;
+    --homophones: 0.42 0.18 320;
+    --homophones-bg: 0.95 0.06 320;
+    --vowels: 0.50 0.18 78;
+    --vowels-bg: 0.96 0.07 78;
 
-    --chart-1: 0.58 0.26 28;
-    --chart-2: 0.54 0.24 160;
-    --chart-3: 0.52 0.28 265;
-    --chart-4: 0.56 0.26 310;
-    --chart-5: 0.62 0.26 80;
+    --chart-1: 0.42 0.18 28;
+    --chart-2: 0.38 0.16 175;
+    --chart-3: 0.35 0.16 258;
+    --chart-4: 0.42 0.18 320;
+    --chart-5: 0.50 0.18 78;
 
-    --sidebar: 0.98 0.006 85;
-    --sidebar-foreground: 0.18 0.04 260;
-    --sidebar-primary: 0.5 0.28 300;
+    --sidebar: 0.97 0.012 75;
+    --sidebar-foreground: 0.15 0.04 255;
+    --sidebar-primary: 0.28 0.12 258;
     --sidebar-primary-foreground: 0.98 0 0;
-    --sidebar-accent: 0.92 0.07 220;
-    --sidebar-accent-foreground: 0.25 0.12 240;
-    --sidebar-border: 0.88 0.025 85;
-    --sidebar-ring: 0.5 0.28 300;
+    --sidebar-accent: 0.90 0.06 195;
+    --sidebar-accent-foreground: 0.22 0.12 200;
+    --sidebar-border: 0.88 0.018 75;
+    --sidebar-ring: 0.28 0.12 258;
   }
 
   * {
@@ -131,14 +131,13 @@
   .bg-vowels-soft { background-color: oklch(var(--vowels-bg)); }
   .border-vowels { border-color: oklch(var(--vowels) / 30%); }
 
-  /* Hero gradient — rainbow burst */
+  /* Hero gradient — classic deep navy → rich burgundy → warm gold */
   .gradient-hero {
     background: linear-gradient(
       135deg,
-      oklch(0.52 0.28 300) 0%,
-      oklch(0.55 0.26 265) 35%,
-      oklch(0.50 0.24 220) 70%,
-      oklch(0.54 0.28 190) 100%
+      oklch(0.22 0.12 258) 0%,
+      oklch(0.30 0.18 320) 45%,
+      oklch(0.40 0.16 40) 100%
     );
   }
 
@@ -149,7 +148,7 @@
 
   .card-lift:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 16px 40px -8px oklch(0.5 0.28 300 / 25%);
+    box-shadow: 0 16px 40px -8px oklch(0.28 0.12 258 / 20%);
   }
 
   /* Noise texture overlay */
@@ -159,7 +158,7 @@
 
   /* Dot grid background */
   .dot-grid {
-    background-image: radial-gradient(circle, oklch(0.95 0.1 80 / 40%) 1px, transparent 1px);
+    background-image: radial-gradient(circle, oklch(0.85 0.12 78 / 35%) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 

@@ -1,6 +1,7 @@
 import { Heart } from "lucide-react";
+import { memo } from "react";
 
-export default function AppFooter() {
+function AppFooterComponent() {
   const year = new Date().getFullYear();
   const hostname =
     typeof window !== "undefined" ? window.location.hostname : "";
@@ -36,3 +37,4 @@ export default function AppFooter() {
     </footer>
   );
 }
+export default memo(AppFooterComponent);

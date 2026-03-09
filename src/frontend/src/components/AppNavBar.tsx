@@ -1,17 +1,25 @@
 import {
   BookOpen,
+  BookText,
+  CalendarDays,
+  Flame,
   GraduationCap,
   Home,
   Layers,
   Link,
+  LogOut,
   Menu,
+  MessageCircle,
+  MessageSquare,
   Trophy,
   Volume2,
   Waves,
   X,
+  Zap,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { memo, useState } from "react";
+import { useStudentAuth } from "../hooks/useStudentAuth";
 import type { Section } from "../pages/LearningHome";
 
 interface NavItem {
@@ -72,6 +80,48 @@ const navItems: NavItem[] = [
     color: "oklch(0.52 0.24 295)",
     dataOcid: "nav.quiz.link",
   },
+  {
+    id: "imperative",
+    label: "Imperative",
+    icon: <MessageSquare className="w-4 h-4" />,
+    color: "oklch(0.52 0.26 200)",
+    dataOcid: "nav.imperative.link",
+  },
+  {
+    id: "infinitive",
+    label: "Infinitive",
+    icon: <Zap className="w-4 h-4" />,
+    color: "oklch(0.55 0.26 45)",
+    dataOcid: "nav.infinitive.link",
+  },
+  {
+    id: "non-infinitive",
+    label: "Non-Infinitive",
+    icon: <Flame className="w-4 h-4" />,
+    color: "oklch(0.54 0.26 15)",
+    dataOcid: "nav.non_infinitive.link",
+  },
+  {
+    id: "conversations",
+    label: "Conversations",
+    icon: <MessageCircle className="w-4 h-4" />,
+    color: "oklch(0.28 0.14 195)",
+    dataOcid: "nav.conversations.link",
+  },
+  {
+    id: "course",
+    label: "30 Days Course",
+    icon: <CalendarDays className="w-4 h-4" />,
+    color: "oklch(0.36 0.18 155)",
+    dataOcid: "nav.course.link",
+  },
+  {
+    id: "stories",
+    label: "Stories",
+    icon: <BookText className="w-4 h-4" />,
+    color: "oklch(0.44 0.22 258)",
+    dataOcid: "nav.stories.link",
+  },
 ];
 
 interface Props {
@@ -79,8 +129,9 @@ interface Props {
   onNavigate: (section: Section) => void;
 }
 
-export default function AppNavBar({ active, onNavigate }: Props) {
+function AppNavBarComponent({ active, onNavigate }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { student, logout } = useStudentAuth();
 
   const handleNav = (section: Section) => {
     onNavigate(section);
@@ -100,13 +151,13 @@ export default function AppNavBar({ active, onNavigate }: Props) {
             >
               <div
                 className="w-9 h-9 rounded-xl flex items-center justify-center"
-                style={{ background: "oklch(0.50 0.28 300)" }}
+                style={{ background: "oklch(0.28 0.12 258)" }}
               >
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
               <span className="font-display font-extrabold text-lg text-foreground leading-none">
-                Learning
-                <span style={{ color: "oklch(0.58 0.26 80)" }}>Point</span>
+                The Learning
+                <span style={{ color: "oklch(0.88 0.20 78)" }}> Hub</span>
               </span>
             </button>
 
@@ -157,14 +208,48 @@ export default function AppNavBar({ active, onNavigate }: Props) {
               style={{
                 color:
                   active === "home"
-                    ? "oklch(0.50 0.28 300)"
+                    ? "oklch(0.28 0.12 258)"
                     : "oklch(0.45 0.05 265)",
                 background:
-                  active === "home" ? "oklch(0.93 0.1 300)" : "transparent",
+                  active === "home" ? "oklch(0.90 0.06 195)" : "transparent",
               }}
             >
               <Home className="w-4 h-4" />
             </button>
+
+            {/* Student info + logout (desktop) */}
+            {student && (
+              <div className="hidden md:flex items-center gap-2 ml-auto shrink-0">
+                <span
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                  style={{
+                    background: "oklch(0.93 0.08 258)",
+                    color: "oklch(0.35 0.12 258)",
+                    fontFamily: "'Nunito', sans-serif",
+                    maxWidth: "140px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                  title={student.name}
+                >
+                  {student.name}
+                </span>
+                <button
+                  type="button"
+                  data-ocid="nav.logout.button"
+                  onClick={logout}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:bg-destructive/10"
+                  style={{
+                    color: "oklch(0.52 0.20 25)",
+                    fontFamily: "'Nunito', sans-serif",
+                  }}
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  Logout
+                </button>
+              </div>
+            )}
 
             {/* Mobile hamburger */}
             <button
@@ -205,13 +290,13 @@ export default function AppNavBar({ active, onNavigate }: Props) {
                 <div className="flex items-center gap-2.5">
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center"
-                    style={{ background: "oklch(0.50 0.28 300)" }}
+                    style={{ background: "oklch(0.28 0.12 258)" }}
                   >
                     <GraduationCap className="w-5 h-5 text-white" />
                   </div>
                   <span className="font-display font-extrabold text-lg text-foreground">
-                    Learning
-                    <span style={{ color: "oklch(0.58 0.26 80)" }}>Point</span>
+                    The Learning
+                    <span style={{ color: "oklch(0.88 0.20 78)" }}> Hub</span>
                   </span>
                 </div>
                 <button
@@ -248,6 +333,38 @@ export default function AppNavBar({ active, onNavigate }: Props) {
                   </button>
                 ))}
               </div>
+
+              {/* Mobile student info + logout */}
+              {student && (
+                <div className="mt-4 pt-4 border-t border-border space-y-2">
+                  <div
+                    className="px-4 py-2 rounded-xl text-sm font-semibold truncate"
+                    style={{
+                      background: "oklch(0.93 0.08 258)",
+                      color: "oklch(0.35 0.12 258)",
+                      fontFamily: "'Nunito', sans-serif",
+                    }}
+                  >
+                    {student.name}
+                  </div>
+                  <button
+                    type="button"
+                    data-ocid="nav.mobile.logout.button"
+                    onClick={() => {
+                      logout();
+                      setMobileOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-destructive/10"
+                    style={{
+                      color: "oklch(0.52 0.20 25)",
+                      fontFamily: "'Nunito', sans-serif",
+                    }}
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Logout
+                  </button>
+                </div>
+              )}
             </motion.nav>
           </>
         )}
@@ -255,3 +372,4 @@ export default function AppNavBar({ active, onNavigate }: Props) {
     </>
   );
 }
+export default memo(AppNavBarComponent);

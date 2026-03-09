@@ -1,15 +1,21 @@
 import {
   ArrowRight,
   BookOpen,
+  BookText,
+  CalendarDays,
+  Flame,
   GraduationCap,
   Layers,
   Link,
+  MessageCircle,
+  MessageSquare,
   PlayCircle,
   Star,
   Trophy,
   Volume2,
   Waves,
   Youtube,
+  Zap,
 } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -20,7 +26,14 @@ export type Section =
   | "auxiliaries"
   | "homophones"
   | "vowels"
-  | "quiz";
+  | "quiz"
+  | "imperative"
+  | "infinitive"
+  | "non-infinitive"
+  | "conversations"
+  | "stories"
+  | "course"
+  | "course-day";
 
 interface Module {
   id: Section;
@@ -99,6 +112,72 @@ const modules: Module[] = [
     bgColor: "oklch(0.95 0.08 295)",
     dataOcid: "home.quiz.card",
   },
+  {
+    id: "imperative",
+    title: "Imperative",
+    description:
+      "Learn commands, requests, and prohibitions with positive, negative, and polite forms.",
+    icon: <MessageSquare className="w-7 h-7" />,
+    count: "3 Types",
+    color: "oklch(0.52 0.26 200)",
+    bgColor: "oklch(0.94 0.1 200)",
+    dataOcid: "home.imperative.card",
+  },
+  {
+    id: "infinitive",
+    title: "Infinitive",
+    description:
+      "Master 'to + base verb' — used as noun, adjective, and adverb in sentences.",
+    icon: <Zap className="w-7 h-7" />,
+    count: "3 Uses",
+    color: "oklch(0.55 0.26 45)",
+    bgColor: "oklch(0.96 0.1 45)",
+    dataOcid: "home.infinitive.card",
+  },
+  {
+    id: "non-infinitive",
+    title: "Non-Infinitive",
+    description:
+      "Bare infinitive — base verb without 'to' after modals, let/make, and perception verbs.",
+    icon: <Flame className="w-7 h-7" />,
+    count: "5 Rules",
+    color: "oklch(0.54 0.26 15)",
+    bgColor: "oklch(0.95 0.1 15)",
+    dataOcid: "home.non_infinitive.card",
+  },
+  {
+    id: "conversations",
+    title: "Daily Conversations",
+    description:
+      "Real-life English phrases for school, parties, and weddings — in English and Hindi.",
+    icon: <MessageCircle className="w-7 h-7" />,
+    count: "39 Phrases",
+    color: "oklch(0.28 0.14 195)",
+    bgColor: "oklch(0.92 0.07 195)",
+    dataOcid: "home.conversations.card",
+  },
+  {
+    id: "course",
+    title: "30 Days Course",
+    description:
+      "Complete English speaking course — day by day from beginner to confident speaker.",
+    icon: <CalendarDays className="w-7 h-7" />,
+    count: "30 Days",
+    color: "oklch(0.36 0.18 155)",
+    bgColor: "oklch(0.93 0.08 155)",
+    dataOcid: "home.course.card",
+  },
+  {
+    id: "stories",
+    title: "English Stories",
+    description:
+      "Read bilingual stories in English and Hindi. Build vocabulary and boost reading confidence.",
+    icon: <BookText className="w-7 h-7" />,
+    count: "6 Stories",
+    color: "oklch(0.44 0.22 258)",
+    bgColor: "oklch(0.93 0.10 258)",
+    dataOcid: "home.stories.card",
+  },
 ];
 
 const stats = [
@@ -106,6 +185,8 @@ const stats = [
   { value: "46", label: "Phonics Sounds" },
   { value: "20", label: "Homophone Pairs" },
   { value: "50+", label: "Quiz Questions" },
+  { value: "30", label: "Day Course" },
+  { value: "6", label: "Stories" },
 ];
 
 interface Props {
@@ -178,9 +259,9 @@ export default function LearningHome({ onNavigate }: Props) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-display text-5xl md:text-7xl font-extrabold tracking-tight leading-none mb-6"
           >
-            Learning
-            <span className="block" style={{ color: "oklch(0.92 0.24 80)" }}>
-              Point
+            The Learning
+            <span className="block" style={{ color: "oklch(0.88 0.20 78)" }}>
+              Hub
             </span>
           </motion.h1>
 
@@ -235,7 +316,7 @@ export default function LearningHome({ onNavigate }: Props) {
       {/* Stats Bar */}
       <div className="bg-card border-b border-border shadow-xs">
         <div className="max-w-5xl mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 
 // Legacy type export — kept for backward compatibility with unused old pages
 export type AppPage =
@@ -10,16 +10,45 @@ import { Toaster } from "@/components/ui/sonner";
 import { AnimatePresence, motion } from "motion/react";
 import AppFooter from "./components/AppFooter";
 import AppNavBar from "./components/AppNavBar";
-import AuxiliariesPage from "./pages/AuxiliariesPage";
-import HomophonesPage from "./pages/HomophonesPage";
-import LearningHome, { type Section } from "./pages/LearningHome";
-import PhonicsPage from "./pages/PhonicsPage";
-import QuizPage from "./pages/QuizPage";
-import TensesPage from "./pages/TensesPage";
-import VowelsPage from "./pages/VowelsPage";
+import { useStudentAuth } from "./hooks/useStudentAuth";
+import type { Section } from "./pages/LearningHome";
+
+// Lazy-loaded page components for code splitting
+const AuxiliariesPage = lazy(() => import("./pages/AuxiliariesPage"));
+const ConversationsPage = lazy(() => import("./pages/ConversationsPage"));
+const CoursePage = lazy(() => import("./pages/CoursePage"));
+const DayDetailPage = lazy(() => import("./pages/DayDetailPage"));
+const HomophonesPage = lazy(() => import("./pages/HomophonesPage"));
+const ImperativePage = lazy(() => import("./pages/ImperativePage"));
+const InfinitivePage = lazy(() => import("./pages/InfinitivePage"));
+const LearningHome = lazy(() => import("./pages/LearningHome"));
+const NonInfinitivePage = lazy(() => import("./pages/NonInfinitivePage"));
+const PhonicsPage = lazy(() => import("./pages/PhonicsPage"));
+const QuizPage = lazy(() => import("./pages/QuizPage"));
+const StoriesPage = lazy(() => import("./pages/StoriesPage"));
+const StudentLoginPage = lazy(() => import("./pages/StudentLoginPage"));
+const TensesPage = lazy(() => import("./pages/TensesPage"));
+const VowelsPage = lazy(() => import("./pages/VowelsPage"));
+
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+  </div>
+);
 
 export default function App() {
+  const { isLoggedIn } = useStudentAuth();
   const [section, setSection] = useState<Section>("home");
+  const [selectedCourseDay, setSelectedCourseDay] = useState<number>(1);
+
+  // Show login page if not authenticated
+  if (!isLoggedIn) {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <StudentLoginPage />
+      </Suspense>
+    );
+  }
 
   const handleNavigate = (target: Section) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -42,6 +71,33 @@ export default function App() {
         return <VowelsPage />;
       case "quiz":
         return <QuizPage />;
+      case "imperative":
+        return <ImperativePage />;
+      case "infinitive":
+        return <InfinitivePage />;
+      case "non-infinitive":
+        return <NonInfinitivePage />;
+      case "conversations":
+        return <ConversationsPage />;
+      case "stories":
+        return <StoriesPage />;
+      case "course":
+        return (
+          <CoursePage
+            onBack={() => handleNavigate("home")}
+            onSelectDay={(d) => {
+              setSelectedCourseDay(d);
+              handleNavigate("course-day");
+            }}
+          />
+        );
+      case "course-day":
+        return (
+          <DayDetailPage
+            day={selectedCourseDay}
+            onBack={() => handleNavigate("course")}
+          />
+        );
       default:
         return <LearningHome onNavigate={handleNavigate} />;
     }
@@ -59,7 +115,7 @@ export default function App() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
           >
-            {renderSection()}
+            <Suspense fallback={<PageLoader />}>{renderSection()}</Suspense>
           </motion.div>
         </AnimatePresence>
       </main>
