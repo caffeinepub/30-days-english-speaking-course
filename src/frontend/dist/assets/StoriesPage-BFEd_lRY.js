@@ -1,0 +1,716 @@
+import { c as createLucideIcon, r as reactExports, j as jsxRuntimeExports, A as AnimatePresence, m as motion, B as BookOpen } from "./index-C_yiHTPo.js";
+import { B as Badge } from "./badge-DpgT5v1f.js";
+import { B as Button } from "./button-D2tF0n0S.js";
+import { A as ArrowLeft } from "./arrow-left-D7J-peA0.js";
+import { B as BookMarked, L as Lightbulb } from "./lightbulb-CX0ZeBvp.js";
+import { C as ChevronUp, a as ChevronDown } from "./chevron-up-CywryjPJ.js";
+import "./index-DhDrOttj.js";
+import "./index-UppKNKoW.js";
+import "./utils-Bmita3Ip.js";
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+];
+const Clock = createLucideIcon("clock", __iconNode);
+const stories = [
+  {
+    id: "the-honest-farmer",
+    title: "The Honest Farmer",
+    titleHindi: "ईमानदार किसान",
+    level: "Beginner",
+    topic: "Honesty & Values",
+    topicHindi: "ईमानदारी और मूल्य",
+    readingTime: "3 min",
+    emoji: "🌾",
+    paragraphs: [
+      {
+        english: "Once upon a time, there was a poor farmer named Ramu. He lived in a small village near a forest. Every day, he worked hard in his fields to grow vegetables and wheat.",
+        hindi: "एक बार की बात है, रामू नाम का एक गरीब किसान था। वह एक जंगल के पास एक छोटे से गाँव में रहता था। वह हर दिन अपने खेतों में सब्जियाँ और गेहूँ उगाने के लिए कड़ी मेहनत करता था।"
+      },
+      {
+        english: "One morning, while ploughing his field, Ramu found a small pot full of gold coins. He was very surprised. His hands were shaking with excitement.",
+        hindi: "एक सुबह, अपना खेत जोतते समय, रामू को सोने के सिक्कों से भरा एक छोटा घड़ा मिला। वह बहुत आश्चर्यचकित था। उसके हाथ उत्साह से काँप रहे थे।"
+      },
+      {
+        english: "Ramu immediately thought, 'This gold does not belong to me. I must find its real owner.' He went to the village chief and told him everything honestly.",
+        hindi: "रामू ने तुरंत सोचा, 'यह सोना मेरा नहीं है। मुझे इसका असली मालिक ढूंढना होगा।' वह गाँव के मुखिया के पास गया और उसे सब कुछ ईमानदारी से बताया।"
+      },
+      {
+        english: "The village chief was very impressed. He said, 'Ramu, you are a truly honest man. The king himself must hear about your goodness.' The king rewarded Ramu with land and respect. Ramu became prosperous but always stayed humble.",
+        hindi: "गाँव के मुखिया बहुत प्रभावित हुए। उन्होंने कहा, 'रामू, तुम सच में एक ईमानदार इंसान हो। राजा को खुद तुम्हारी अच्छाई के बारे में सुनना चाहिए।' राजा ने रामू को जमीन और सम्मान से पुरस्कृत किया। रामू समृद्ध हो गया लेकिन हमेशा विनम्र रहा।"
+      }
+    ],
+    vocabulary: [
+      { word: "ploughing", meaning: "हल चलाना (to dig up soil)" },
+      { word: "surprised", meaning: "आश्चर्यचकित (astonished)" },
+      { word: "immediately", meaning: "तुरंत (at once)" },
+      { word: "rewarded", meaning: "पुरस्कृत किया (given a prize)" },
+      { word: "prosperous", meaning: "समृद्ध (wealthy and successful)" },
+      { word: "humble", meaning: "विनम्र (modest, not proud)" }
+    ],
+    moralEnglish: "Honesty is always rewarded. Never hide the truth.",
+    moralHindi: "ईमानदारी का हमेशा पुरस्कार मिलता है। कभी सच मत छुपाओ।"
+  },
+  {
+    id: "the-clever-crow",
+    title: "The Clever Crow",
+    titleHindi: "चालाक कौआ",
+    level: "Beginner",
+    topic: "Intelligence & Problem Solving",
+    topicHindi: "बुद्धि और समस्या समाधान",
+    readingTime: "3 min",
+    emoji: "🐦",
+    paragraphs: [
+      {
+        english: "It was a very hot summer day. A thirsty crow was flying over the fields looking for water. He searched everywhere but could not find any.",
+        hindi: "गर्मियों का बहुत गर्म दिन था। एक प्यासा कौआ पानी की तलाश में खेतों के ऊपर उड़ रहा था। उसने हर जगह खोजा लेकिन कोई पानी नहीं मिला।"
+      },
+      {
+        english: "Finally, the crow saw a tall pot under a tree. He flew down and looked inside. There was some water at the bottom, but it was too low to reach.",
+        hindi: "अंत में, कौए ने एक पेड़ के नीचे एक ऊँचा घड़ा देखा। वह नीचे उड़ा और अंदर देखा। नीचे थोड़ा पानी था, लेकिन वह पहुँचने के लिए बहुत नीचे था।"
+      },
+      {
+        english: "The crow thought carefully. He picked up small stones one by one and dropped them into the pot. Slowly, the water level rose higher and higher.",
+        hindi: "कौए ने ध्यान से सोचा। उसने एक-एक करके छोटे पत्थर उठाए और उन्हें घड़े में डाला। धीरे-धीरे, पानी का स्तर ऊँचा और ऊँचा होता गया।"
+      },
+      {
+        english: "At last, the water was high enough for the crow to drink. He drank the water happily and flew away refreshed. His patience and clever thinking had saved his life.",
+        hindi: "अंत में, पानी इतना ऊँचा हो गया कि कौआ पी सके। उसने खुशी से पानी पिया और तरोताजा होकर उड़ गया। उसके धैर्य और चालाक सोच ने उसकी जान बचाई।"
+      }
+    ],
+    vocabulary: [
+      { word: "thirsty", meaning: "प्यासा (wanting water)" },
+      { word: "searched", meaning: "खोजा (looked for something)" },
+      { word: "bottom", meaning: "तल (the lowest part)" },
+      { word: "carefully", meaning: "ध्यान से (with attention)" },
+      { word: "patience", meaning: "धैर्य (ability to wait calmly)" },
+      { word: "refreshed", meaning: "तरोताजा (feeling new energy)" }
+    ],
+    moralEnglish: "Where there is a will, there is a way. Think before you give up.",
+    moralHindi: "जहाँ चाह वहाँ राह। हार मानने से पहले सोचो।"
+  },
+  {
+    id: "two-friends-and-a-bear",
+    title: "Two Friends and a Bear",
+    titleHindi: "दो दोस्त और एक भालू",
+    level: "Elementary",
+    topic: "Friendship & Trust",
+    topicHindi: "दोस्ती और विश्वास",
+    readingTime: "4 min",
+    emoji: "🐻",
+    paragraphs: [
+      {
+        english: "Arjun and Vikram were best friends. They always said they would help each other in every situation. One day, they decided to travel through a dense forest.",
+        hindi: "अर्जुन और विक्रम पक्के दोस्त थे। वे हमेशा कहते थे कि वे हर परिस्थिति में एक दूसरे की मदद करेंगे। एक दिन, उन्होंने एक घने जंगल से गुजरने का फैसला किया।"
+      },
+      {
+        english: "Suddenly, a big bear appeared on the path in front of them. Both friends were terrified. Arjun, who knew how to climb trees, quickly ran to the nearest tree and climbed up.",
+        hindi: "अचानक, उनके सामने रास्ते पर एक बड़ा भालू प्रकट हुआ। दोनों दोस्त डर गए। अर्जुन, जो पेड़ पर चढ़ना जानता था, तुरंत पास के पेड़ की तरफ दौड़ा और चढ़ गया।"
+      },
+      {
+        english: "He forgot completely about Vikram. Vikram, left alone, remembered that bears do not attack dead bodies. He quickly lay down on the ground and held his breath.",
+        hindi: "वह विक्रम के बारे में बिल्कुल भूल गया। अकेला छूटा विक्रम याद आया कि भालू मुर्दों पर हमला नहीं करते। वह जल्दी से जमीन पर लेट गया और साँस रोक ली।"
+      },
+      {
+        english: "The bear came close, sniffed Vikram's face, and walked away, thinking he was dead. After the bear left, Arjun climbed down and asked, 'What did the bear whisper in your ear?' Vikram replied, 'He told me never to trust a friend who abandons you in danger.'",
+        hindi: "भालू पास आया, विक्रम का चेहरा सूँघा और चला गया, यह सोचते हुए कि वह मर गया है। भालू के जाने के बाद, अर्जुन नीचे उतरा और पूछा, 'भालू ने तुम्हारे कान में क्या फुसफुसाया?' विक्रम ने जवाब दिया, 'उसने मुझे बताया कि उस दोस्त पर कभी भरोसा मत करो जो खतरे में तुम्हें छोड़ दे।'"
+      }
+    ],
+    vocabulary: [
+      { word: "dense", meaning: "घना (thick, crowded)" },
+      { word: "terrified", meaning: "भयभीत (extremely scared)" },
+      { word: "appeared", meaning: "प्रकट हुआ (came into view)" },
+      { word: "sniffed", meaning: "सूँघा (smelled using the nose)" },
+      { word: "whisper", meaning: "फुसफुसाना (speak very softly)" },
+      { word: "abandons", meaning: "छोड़ देता है (leaves behind)" }
+    ],
+    moralEnglish: "A friend in need is a friend indeed. True friendship never runs away.",
+    moralHindi: "मुसीबत में जो साथ दे वही सच्चा दोस्त होता है।"
+  },
+  {
+    id: "the-magic-paintbrush",
+    title: "The Magic Paintbrush",
+    titleHindi: "जादुई तूलिका",
+    level: "Elementary",
+    topic: "Kindness & Greed",
+    topicHindi: "दयालुता और लालच",
+    readingTime: "5 min",
+    emoji: "🎨",
+    paragraphs: [
+      {
+        english: "Priya was a young girl who loved to paint. She was very poor, but her paintings were full of life and color. Every day she drew on old pieces of paper she found near the market.",
+        hindi: "प्रिया एक युवा लड़की थी जिसे चित्र बनाना बहुत पसंद था। वह बहुत गरीब थी, लेकिन उसकी पेंटिंग्स जीवन और रंग से भरी थीं। वह हर दिन बाजार के पास पड़े पुराने कागज के टुकड़ों पर चित्र बनाती थी।"
+      },
+      {
+        english: "One night, an old woman appeared in Priya's dream. She gave Priya a golden paintbrush and said, 'Whatever you paint with this brush will come to life — but use it only to help others.'",
+        hindi: "एक रात, प्रिया के सपने में एक बूढ़ी औरत प्रकट हुई। उसने प्रिया को एक सुनहरी तूलिका दी और कहा, 'इस तूलिका से जो भी चित्र बनाओगी वह जीवित हो जाएगा — लेकिन इसे केवल दूसरों की मदद के लिए उपयोग करो।'"
+      },
+      {
+        english: "Priya woke up and found the golden paintbrush in her hand. She painted food for the hungry, medicine for the sick, and shoes for children who walked barefoot. The whole village was happy.",
+        hindi: "प्रिया उठी और उसके हाथ में सुनहरी तूलिका मिली। उसने भूखों के लिए खाना, बीमारों के लिए दवाई, और नंगे पैर चलने वाले बच्चों के लिए जूते बनाए। पूरा गाँव खुश था।"
+      },
+      {
+        english: "But the greedy landlord of the village heard about the magic brush. He forced Priya to paint gold and jewels for him. When he asked her to paint a huge mountain of gold, she painted a great flood instead. The flood washed away all his greed forever.",
+        hindi: "लेकिन गाँव के लालची जमींदार को जादुई तूलिका के बारे में पता चला। उसने प्रिया को उसके लिए सोना और गहने बनाने पर मजबूर किया। जब उसने उससे सोने का बड़ा पहाड़ बनाने को कहा, तो उसने इसके बजाय एक बड़ी बाढ़ बनाई। बाढ़ ने उसका सारा लालच हमेशा के लिए बहा दिया।"
+      }
+    ],
+    vocabulary: [
+      { word: "paintbrush", meaning: "तूलिका / ब्रश (a tool for painting)" },
+      { word: "appeared", meaning: "प्रकट हुई (showed up)" },
+      { word: "barefoot", meaning: "नंगे पैर (without shoes)" },
+      { word: "greedy", meaning: "लालची (wanting more than needed)" },
+      { word: "landlord", meaning: "जमींदार (one who owns land)" },
+      { word: "flood", meaning: "बाढ़ (water overflowing land)" }
+    ],
+    moralEnglish: "Use your gifts to help others, not to serve greed.",
+    moralHindi: "अपनी प्रतिभा का उपयोग दूसरों की मदद के लिए करो, लालच के लिए नहीं।"
+  },
+  {
+    id: "the-lost-puppy",
+    title: "The Lost Puppy",
+    titleHindi: "खोया हुआ पिल्ला",
+    level: "Intermediate",
+    topic: "Empathy & Kindness",
+    topicHindi: "सहानुभूति और दयालुता",
+    readingTime: "5 min",
+    emoji: "🐶",
+    paragraphs: [
+      {
+        english: "Rahul was walking home from school one rainy afternoon when he heard a soft whimpering sound coming from a narrow alley. He stopped and peered into the darkness.",
+        hindi: "राहुल एक बरसाती दोपहर को स्कूल से घर जा रहा था जब उसने एक संकरी गली से धीमी रोने की आवाज सुनी। वह रुका और अंधेरे में झाँका।"
+      },
+      {
+        english: "There, shivering beneath a cardboard box, was a tiny brown puppy. Its eyes were wide with fear, and it was soaking wet from the rain. Rahul's heart went out to the little creature.",
+        hindi: "वहाँ, एक गत्ते के डिब्बे के नीचे काँपता हुआ, एक छोटा भूरा पिल्ला था। उसकी आँखें डर से बड़ी थीं, और वह बारिश से पूरी तरह भीगा हुआ था। राहुल का दिल उस छोटे प्राणी के लिए दुखी हो गया।"
+      },
+      {
+        english: "Without hesitation, Rahul took off his school bag, removed his spare shirt, and gently wrapped the puppy in it. He carried the puppy home, talking to it softly all the way. 'Don't worry, little one. You are safe now,' he whispered.",
+        hindi: "बिना हिचकिचाहट के, राहुल ने अपना स्कूल बैग उतारा, अपनी अतिरिक्त कमीज निकाली, और धीरे से पिल्ले को उसमें लपेट लिया। वह पिल्ले को घर ले गया, पूरे रास्ते उससे धीरे-धीरे बात करता रहा। 'चिंता मत करो, छोटे। तुम अब सुरक्षित हो,' उसने फुसफुसाया।"
+      },
+      {
+        english: "Rahul's mother helped him dry and feed the puppy. They searched the neighbourhood and found the puppy's owner — an elderly woman who had been crying all afternoon. Her eyes lit up with joy and she hugged Rahul tightly. 'Thank you, my dear boy. You have a golden heart,' she said.",
+        hindi: "राहुल की माँ ने उसे पिल्ले को सुखाने और खिलाने में मदद की। उन्होंने पड़ोस में खोजा और पिल्ले का मालिक मिला — एक बुजुर्ग महिला जो दोपहर भर रो रही थी। उसकी आँखें खुशी से चमक उठीं और उसने राहुल को कसकर गले लगाया। 'शुक्रिया, मेरे प्यारे बच्चे। तुम्हारा दिल सोने का है,' उसने कहा।"
+      }
+    ],
+    vocabulary: [
+      { word: "whimpering", meaning: "सिसकना (crying softly)" },
+      { word: "alley", meaning: "गली (narrow passage between buildings)" },
+      { word: "shivering", meaning: "काँपना (trembling from cold/fear)" },
+      { word: "hesitation", meaning: "हिचकिचाहट (pause before acting)" },
+      { word: "neighbourhood", meaning: "पड़ोस (the area nearby)" },
+      { word: "elderly", meaning: "बुजुर्ग (old in age)" }
+    ],
+    moralEnglish: "A small act of kindness can make a huge difference in someone's life.",
+    moralHindi: "दयालुता का एक छोटा सा काम किसी की जिंदगी में बड़ा बदलाव ला सकता है।"
+  },
+  {
+    id: "the-students-promise",
+    title: "The Student's Promise",
+    titleHindi: "छात्र का वादा",
+    level: "Intermediate",
+    topic: "Education & Determination",
+    topicHindi: "शिक्षा और दृढ़ संकल्प",
+    readingTime: "5 min",
+    emoji: "📚",
+    paragraphs: [
+      {
+        english: "Meena lived in a small town where many people believed girls did not need education. Her father worked in a factory and her mother stitched clothes at home. Every evening, Meena secretly read her brother's textbooks by candlelight.",
+        hindi: "मीना एक छोटे कस्बे में रहती थी जहाँ बहुत से लोग मानते थे कि लड़कियों को पढ़ाई की जरूरत नहीं। उसके पिता एक कारखाने में काम करते थे और उसकी माँ घर पर कपड़े सिलती थी। हर शाम, मीना चुपचाप मोमबत्ती की रोशनी में अपने भाई की किताबें पढ़ती थी।"
+      },
+      {
+        english: "One day, a new school opened in the village. The headmistress visited each family and said, 'Every child deserves to learn.' Meena's mother fought hard to convince her father. Finally, he agreed to send Meena to school for one year.",
+        hindi: "एक दिन, गाँव में एक नया स्कूल खुला। प्रधानाचार्या ने हर परिवार से मुलाकात की और कहा, 'हर बच्चे को सीखने का अधिकार है।' मीना की माँ ने उसके पिता को मनाने के लिए कड़ी मेहनत की। अंत में, उन्होंने मीना को एक साल के लिए स्कूल भेजने पर सहमति जताई।"
+      },
+      {
+        english: "Meena worked harder than any other student. She walked four kilometres to school every day, rain or shine. She studied late into the night and helped her classmates understand difficult lessons. Within six months, she won the district's top scholarship.",
+        hindi: "मीना किसी भी अन्य छात्र से ज्यादा मेहनत करती थी। वह बारिश हो या धूप, हर दिन चार किलोमीटर स्कूल जाती थी। वह देर रात तक पढ़ती थी और अपने सहपाठियों को कठिन पाठ समझने में मदद करती थी। छह महीने के भीतर, उसने जिले की शीर्ष छात्रवृत्ति जीती।"
+      },
+      {
+        english: "Her father stood in the school hall, watching his daughter receive the award. Tears rolled down his cheeks. 'I was wrong,' he said quietly. 'No one should ever stop a child from learning.' Meena smiled and hugged him. She had not only won a scholarship — she had changed her father's heart.",
+        hindi: "उसके पिता स्कूल हॉल में खड़े होकर अपनी बेटी को पुरस्कार लेते देख रहे थे। उनके गालों पर आँसू बह रहे थे। 'मैं गलत था,' उन्होंने धीरे से कहा। 'किसी को भी किसी बच्चे को सीखने से नहीं रोकना चाहिए।' मीना मुस्कुराई और उन्हें गले लगा लिया। उसने न केवल छात्रवृत्ति जीती थी — उसने अपने पिता का दिल बदल दिया था।"
+      }
+    ],
+    vocabulary: [
+      {
+        word: "secretly",
+        meaning: "चुपचाप / गुप्त रूप से (without others knowing)"
+      },
+      { word: "convinced", meaning: "मनाया (persuaded)" },
+      { word: "scholarship", meaning: "छात्रवृत्ति (financial award for study)" },
+      { word: "determination", meaning: "दृढ़ संकल्प (strong will to succeed)" },
+      { word: "district", meaning: "जिला (an area of a region)" },
+      { word: "deserve", meaning: "पात्र होना (to be worthy of something)" }
+    ],
+    moralEnglish: "Education opens every door. Never let anyone stop you from learning.",
+    moralHindi: "शिक्षा हर दरवाजा खोलती है। किसी को भी तुम्हें सीखने से मत रोकने दो।"
+  }
+];
+const LEVEL_COLORS = {
+  Beginner: { bg: "oklch(0.94 0.10 155)", text: "oklch(0.36 0.18 155)" },
+  Elementary: { bg: "oklch(0.94 0.10 80)", text: "oklch(0.45 0.20 80)" },
+  Intermediate: { bg: "oklch(0.93 0.10 258)", text: "oklch(0.44 0.22 258)" }
+};
+function StoryCard({ story, onOpen }) {
+  const lc = LEVEL_COLORS[story.level] ?? LEVEL_COLORS.Beginner;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.button,
+    {
+      type: "button",
+      "data-ocid": `stories.${story.id}.card`,
+      onClick: onOpen,
+      whileHover: { y: -4, scale: 1.02 },
+      whileTap: { scale: 0.98 },
+      className: "text-left p-6 rounded-2xl border bg-card shadow-sm hover:shadow-md transition-shadow w-full",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3 mb-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-4xl", children: story.emoji }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Badge,
+            {
+              className: "shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full border-0",
+              style: { background: lc.bg, color: lc.text },
+              children: story.level
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "h3",
+          {
+            className: "font-display text-lg font-bold text-foreground mb-0.5",
+            style: { fontFamily: "'Sora', sans-serif" },
+            children: story.title
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "p",
+          {
+            className: "text-sm text-muted-foreground mb-3",
+            style: { fontFamily: "'Nunito', sans-serif" },
+            children: story.titleHindi
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "span",
+            {
+              className: "flex items-center gap-1 text-xs font-medium",
+              style: {
+                color: "oklch(0.50 0.08 258)",
+                fontFamily: "'Nunito', sans-serif"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(BookMarked, { className: "w-3 h-3" }),
+                story.topic
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "span",
+            {
+              className: "flex items-center gap-1 text-xs font-medium",
+              style: {
+                color: "oklch(0.55 0.05 258)",
+                fontFamily: "'Nunito', sans-serif"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-3 h-3" }),
+                story.readingTime
+              ]
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+function StoryDetail({ story, onBack }) {
+  const [showHindi, setShowHindi] = reactExports.useState({});
+  const [vocabOpen, setVocabOpen] = reactExports.useState(false);
+  const lc = LEVEL_COLORS[story.level] ?? LEVEL_COLORS.Beginner;
+  const toggleHindi = (i) => setShowHindi((prev) => ({ ...prev, [i]: !prev[i] }));
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0, x: 40 },
+      animate: { opacity: 1, x: 0 },
+      exit: { opacity: 0, x: -40 },
+      transition: { duration: 0.25 },
+      className: "max-w-3xl mx-auto px-4 py-8",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            variant: "ghost",
+            "data-ocid": "stories.back.button",
+            onClick: onBack,
+            className: "mb-6 -ml-2 flex items-center gap-2 text-sm font-semibold",
+            style: {
+              color: "oklch(0.44 0.18 258)",
+              fontFamily: "'Nunito', sans-serif"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-4 h-4" }),
+              "Back to Stories"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-8", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-5xl", children: story.emoji }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  className: "text-xs font-semibold px-2.5 py-0.5 rounded-full border-0 mb-1",
+                  style: { background: lc.bg, color: lc.text },
+                  children: story.level
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "h1",
+                {
+                  className: "font-display text-2xl md:text-3xl font-extrabold text-foreground leading-tight",
+                  style: { fontFamily: "'Sora', sans-serif" },
+                  children: story.title
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-base font-medium",
+                  style: {
+                    color: "oklch(0.50 0.06 258)",
+                    fontFamily: "'Nunito', sans-serif"
+                  },
+                  children: story.titleHindi
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4 flex-wrap mt-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "span",
+              {
+                className: "flex items-center gap-1.5 text-sm font-medium",
+                style: {
+                  color: "oklch(0.45 0.08 258)",
+                  fontFamily: "'Nunito', sans-serif"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(BookMarked, { className: "w-4 h-4" }),
+                  story.topic,
+                  " / ",
+                  story.topicHindi
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "span",
+              {
+                className: "flex items-center gap-1.5 text-sm font-medium",
+                style: {
+                  color: "oklch(0.50 0.05 258)",
+                  fontFamily: "'Nunito', sans-serif"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-4 h-4" }),
+                  story.readingTime,
+                  " read"
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "text-xs mt-3 italic",
+              style: {
+                color: "oklch(0.60 0.04 258)",
+                fontFamily: "'Nunito', sans-serif"
+              },
+              children: 'Tap "Show Hindi" below any paragraph to see the translation.'
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-5 mb-10", children: story.paragraphs.map((para, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "rounded-2xl border bg-card p-5 shadow-xs",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-base leading-relaxed text-foreground mb-3",
+                  style: { fontFamily: "'Nunito', sans-serif" },
+                  children: para.english
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": `stories.para_${i + 1}.toggle`,
+                  onClick: () => toggleHindi(i),
+                  className: "text-xs font-semibold flex items-center gap-1 transition-opacity hover:opacity-70",
+                  style: {
+                    color: "oklch(0.44 0.18 258)",
+                    fontFamily: "'Nunito', sans-serif"
+                  },
+                  children: showHindi[i] ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "w-3 h-3" }),
+                    " Hide Hindi"
+                  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "w-3 h-3" }),
+                    " Show Hindi / हिन्दी देखें"
+                  ] })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showHindi[i] && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.p,
+                {
+                  initial: { opacity: 0, height: 0 },
+                  animate: { opacity: 1, height: "auto" },
+                  exit: { opacity: 0, height: 0 },
+                  transition: { duration: 0.2 },
+                  className: "text-sm leading-relaxed mt-3 pt-3 border-t border-border overflow-hidden",
+                  style: {
+                    color: "oklch(0.42 0.08 258)",
+                    fontFamily: "'Nunito', sans-serif"
+                  },
+                  children: para.hindi
+                }
+              ) })
+            ]
+          },
+          para.english.slice(0, 30)
+        )) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "rounded-2xl border bg-card shadow-xs mb-8 overflow-hidden", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              "data-ocid": "stories.vocab.toggle",
+              onClick: () => setVocabOpen((v) => !v),
+              className: "w-full flex items-center justify-between px-5 py-4 font-bold text-foreground hover:bg-muted/30 transition-colors",
+              style: { fontFamily: "'Sora', sans-serif" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    BookOpen,
+                    {
+                      className: "w-5 h-5",
+                      style: { color: "oklch(0.44 0.18 258)" }
+                    }
+                  ),
+                  "Vocabulary (",
+                  story.vocabulary.length,
+                  " words)"
+                ] }),
+                vocabOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "w-4 h-4" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "w-4 h-4" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: vocabOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            motion.div,
+            {
+              initial: { opacity: 0, height: 0 },
+              animate: { opacity: 1, height: "auto" },
+              exit: { opacity: 0, height: 0 },
+              transition: { duration: 0.22 },
+              className: "overflow-hidden",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-5 pb-5 grid grid-cols-1 sm:grid-cols-2 gap-3", children: story.vocabulary.map((v) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  className: "flex items-start gap-2 p-3 rounded-xl",
+                  style: { background: "oklch(0.97 0.02 258)" },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: "font-bold text-sm shrink-0",
+                        style: {
+                          color: "oklch(0.44 0.18 258)",
+                          fontFamily: "'Sora', sans-serif"
+                        },
+                        children: v.word
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "span",
+                      {
+                        className: "text-sm",
+                        style: {
+                          color: "oklch(0.40 0.06 258)",
+                          fontFamily: "'Nunito', sans-serif"
+                        },
+                        children: [
+                          "— ",
+                          v.meaning
+                        ]
+                      }
+                    )
+                  ]
+                },
+                v.word
+              )) })
+            }
+          ) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "rounded-2xl p-6 flex gap-4",
+            style: {
+              background: "oklch(0.94 0.10 80)",
+              border: "1px solid oklch(0.85 0.14 80)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Lightbulb,
+                {
+                  className: "w-6 h-6 shrink-0 mt-0.5",
+                  style: { color: "oklch(0.45 0.20 80)" }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "font-bold text-sm mb-1",
+                    style: {
+                      color: "oklch(0.28 0.10 80)",
+                      fontFamily: "'Sora', sans-serif"
+                    },
+                    children: "Moral of the Story"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-sm leading-relaxed font-medium",
+                    style: {
+                      color: "oklch(0.32 0.10 80)",
+                      fontFamily: "'Nunito', sans-serif"
+                    },
+                    children: story.moralEnglish
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-sm leading-relaxed mt-1",
+                    style: {
+                      color: "oklch(0.40 0.08 80)",
+                      fontFamily: "'Nunito', sans-serif"
+                    },
+                    children: story.moralHindi
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
+function StoriesPage() {
+  const [selected, setSelected] = reactExports.useState(null);
+  if (selected) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      StoryDetail,
+      {
+        story: selected,
+        onBack: () => setSelected(null)
+      },
+      selected.id
+    ) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 py-10", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 16 },
+        animate: { opacity: 1, y: 0 },
+        className: "text-center mb-10",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-4",
+              style: {
+                background: "oklch(0.93 0.10 258)",
+                color: "oklch(0.38 0.20 258)",
+                fontFamily: "'Nunito', sans-serif"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-4 h-4" }),
+                "Reading Practice"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "h1",
+            {
+              className: "font-display text-3xl md:text-4xl font-extrabold text-foreground mb-3",
+              style: { fontFamily: "'Sora', sans-serif" },
+              children: "English Stories"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "text-muted-foreground text-lg max-w-xl mx-auto",
+              style: { fontFamily: "'Nunito', sans-serif" },
+              children: "Read bilingual stories in English and Hindi. Build your vocabulary and improve your reading confidence, one story at a time."
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap justify-center gap-3 mb-8", children: Object.entries(LEVEL_COLORS).map(([level, lc]) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "span",
+      {
+        className: "text-xs font-semibold px-3 py-1 rounded-full",
+        style: {
+          background: lc.bg,
+          color: lc.text,
+          fontFamily: "'Nunito', sans-serif"
+        },
+        children: level
+      },
+      level
+    )) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "data-ocid": "stories.list",
+        className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5",
+        children: stories.map((story, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0, y: 24 },
+            animate: { opacity: 1, y: 0 },
+            transition: {
+              delay: 0.05 * i,
+              type: "spring",
+              stiffness: 200,
+              damping: 22
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(StoryCard, { story, onOpen: () => setSelected(story) })
+          },
+          story.id
+        ))
+      }
+    )
+  ] });
+}
+export {
+  StoriesPage as default
+};

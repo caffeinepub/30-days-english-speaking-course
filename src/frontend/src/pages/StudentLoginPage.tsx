@@ -5,9 +5,7 @@ import {
   BookOpen,
   Eye,
   EyeOff,
-  Facebook,
   GraduationCap,
-  Mail,
   Phone,
   RefreshCw,
 } from "lucide-react";
@@ -16,28 +14,17 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import AvatarPicker from "../components/AvatarPicker";
 import OtpInput from "../components/OtpInput";
-import {
-  type LoginMethod,
-  hashPassword,
-  useStudentAuth,
-} from "../hooks/useStudentAuth";
+import { hashPassword, useStudentAuth } from "../hooks/useStudentAuth";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
 type TopTab = "signin" | "register";
-type MethodTab = LoginMethod;
 type RegisterStep = 1 | 2 | 3;
 
 // ─── Constants ─────────────────────────────────────────────────────────────
 
 const DEMO_OTP = "123456";
 const OTP_RESEND_SECONDS = 60;
-
-const METHOD_TABS: { id: MethodTab; label: string; icon: React.ReactNode }[] = [
-  { id: "mobile", label: "Mobile", icon: <Phone className="w-4 h-4" /> },
-  { id: "email", label: "Gmail", icon: <Mail className="w-4 h-4" /> },
-  { id: "facebook", label: "Facebook", icon: <Facebook className="w-4 h-4" /> },
-];
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -60,45 +47,20 @@ const INPUT_STYLE = {
   fontFamily: "'Outfit', sans-serif",
 } as const;
 
-function methodColor(method: MethodTab): string {
-  if (method === "mobile") return "oklch(0.52 0.24 160)";
-  if (method === "email") return "oklch(0.55 0.26 28)";
-  return "oklch(0.44 0.22 258)";
-}
+const ACCENT_COLOR = "oklch(0.52 0.24 160)";
+const ACCENT_GRADIENT =
+  "linear-gradient(135deg, oklch(0.36 0.18 155) 0%, oklch(0.52 0.24 160) 100%)";
 
-function methodBtnGradient(method: MethodTab): string {
-  if (method === "mobile")
-    return "linear-gradient(135deg, oklch(0.36 0.18 155) 0%, oklch(0.52 0.24 160) 100%)";
-  if (method === "email")
-    return "linear-gradient(135deg, oklch(0.55 0.26 28) 0%, oklch(0.62 0.22 45) 100%)";
-  return "linear-gradient(135deg, oklch(0.44 0.22 258) 0%, oklch(0.38 0.20 258) 100%)";
-}
-
-function validateIdentifier(method: MethodTab, val: string): string {
-  if (!val.trim()) {
-    if (method === "mobile") return "Please enter your mobile number.";
-    if (method === "email") return "Please enter your email address.";
-    return "Please enter your Facebook name or username.";
-  }
-  if (method === "mobile" && !/^\+?[0-9\s\-]{7,15}$/.test(val.trim()))
+function validateMobile(val: string): string {
+  if (!val.trim()) return "Please enter your mobile number.";
+  if (!/^\+?[0-9\s\-]{7,15}$/.test(val.trim()))
     return "Please enter a valid mobile number.";
-  if (method === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()))
-    return "Please enter a valid email address.";
   return "";
 }
 
 // ─── Step Dots ──────────────────────────────────────────────────────────────
 
-function StepDots({
-  total,
-  current,
-  method,
-}: {
-  total: number;
-  current: number;
-  method: MethodTab;
-}) {
-  const color = methodColor(method);
+function StepDots({ total, current }: { total: number; current: number }) {
   return (
     <div className="flex items-center justify-center gap-2 mb-4">
       {Array.from({ length: total }, (_, i) => `dot-${i}`).map((keyId, i) => (
@@ -110,9 +72,9 @@ function StepDots({
             height: 8,
             background:
               current === i + 1
-                ? color
+                ? ACCENT_COLOR
                 : i + 1 < current
-                  ? `${color}80`
+                  ? `${ACCENT_COLOR}80`
                   : "oklch(0.88 0.04 258 / 40%)",
           }}
         />
@@ -123,15 +85,7 @@ function StepDots({
 
 // ─── Progress Bar ───────────────────────────────────────────────────────────
 
-function StepProgress({
-  step,
-  total,
-  method,
-}: {
-  step: number;
-  total: number;
-  method: MethodTab;
-}) {
+function StepProgress({ step, total }: { step: number; total: number }) {
   const pct = ((step - 1) / (total - 1)) * 100;
   return (
     <div
@@ -140,7 +94,7 @@ function StepProgress({
     >
       <motion.div
         className="h-full rounded-full"
-        style={{ background: methodBtnGradient(method) }}
+        style={{ background: ACCENT_GRADIENT }}
         animate={{ width: `${pct}%` }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       />
@@ -192,13 +146,7 @@ function PasswordInput({
 
 // ─── OTP Timer ───────────────────────────────────────────────────────────────
 
-function OtpTimer({
-  onResend,
-  method,
-}: {
-  onResend: () => void;
-  method: MethodTab;
-}) {
+function OtpTimer({ onResend }: { onResend: () => void }) {
   const [secs, setSecs] = useState(OTP_RESEND_SECONDS);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -242,9 +190,7 @@ function OtpTimer({
         }}
       >
         Resend OTP in{" "}
-        <span style={{ color: methodColor(method), fontWeight: 700 }}>
-          {secs}s
-        </span>
+        <span style={{ color: ACCENT_COLOR, fontWeight: 700 }}>{secs}s</span>
       </p>
     );
   }
@@ -255,7 +201,7 @@ function OtpTimer({
       data-ocid="login.otp.resend_button"
       onClick={handleResend}
       className="flex items-center gap-1 mx-auto text-xs font-semibold transition-opacity hover:opacity-75"
-      style={{ color: methodColor(method), fontFamily: "'Outfit', sans-serif" }}
+      style={{ color: ACCENT_COLOR, fontFamily: "'Outfit', sans-serif" }}
     >
       <RefreshCw className="w-3 h-3" />
       Resend OTP
@@ -302,134 +248,65 @@ function SwitchTabPrompt({
 
 function SignInPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
   const { login, isRegistered } = useStudentAuth();
-  const [method, setMethod] = useState<MethodTab>("mobile");
-  const [identifier, setIdentifier] = useState("");
+  const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleMethodChange = (m: MethodTab) => {
-    setMethod(m);
-    setIdentifier("");
-    setPassword("");
-    setError("");
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!identifier.trim()) {
-      setError("Please enter your identifier.");
+    if (!mobile.trim()) {
+      setError("Please enter your mobile number.");
       return;
     }
     if (!password) {
       setError("Please enter your password.");
       return;
     }
-
-    if (!isRegistered(identifier.trim())) {
+    if (!isRegistered(mobile.trim())) {
       setError("No account found. Please create one first.");
       return;
     }
 
-    const ph = hashPassword(identifier.trim(), password);
-    const ok = login(identifier.trim(), ph);
+    const ph = hashPassword(mobile.trim(), password);
+    const ok = login(mobile.trim(), ph);
     if (!ok) {
       setError("Incorrect password. Please try again.");
     }
   };
 
-  const placeholders: Record<MethodTab, string> = {
-    mobile: "Mobile number (e.g. +91 9876543210)",
-    email: "Gmail or email address",
-    facebook: "Facebook name or @username",
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Method sub-tabs */}
-      <div
-        className="flex rounded-xl p-1 gap-1"
-        style={{ background: "oklch(0.95 0.02 258)" }}
-      >
-        {METHOD_TABS.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            data-ocid={`login.${t.id}.tab`}
-            onClick={() => handleMethodChange(t.id)}
-            className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-xs font-semibold transition-all"
-            style={{
-              background: method === t.id ? "white" : "transparent",
-              color:
-                method === t.id ? methodColor(t.id) : "oklch(0.50 0.05 258)",
-              boxShadow:
-                method === t.id ? "0 1px 4px oklch(0 0 0 / 12%)" : "none",
-              fontFamily: "'Outfit', sans-serif",
-            }}
-          >
-            {t.icon}
-            <span className="hidden sm:inline">{t.label}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Identifier */}
       <div>
         <label
-          htmlFor="signin-id"
+          htmlFor="signin-mobile"
           className="block text-xs font-semibold mb-1.5"
           style={LABEL_STYLE}
         >
-          {method === "mobile"
-            ? "Mobile Number"
-            : method === "email"
-              ? "Email Address"
-              : "Facebook Name / Username"}
+          Mobile Number
         </label>
         <div className="relative">
           <span className="absolute left-3 top-1/2 -translate-y-1/2">
-            {method === "mobile" ? (
-              <Phone
-                className="w-4 h-4"
-                style={{ color: methodColor("mobile") }}
-              />
-            ) : method === "email" ? (
-              <Mail
-                className="w-4 h-4"
-                style={{ color: methodColor("email") }}
-              />
-            ) : (
-              <Facebook
-                className="w-4 h-4"
-                style={{ color: methodColor("facebook") }}
-              />
-            )}
+            <Phone className="w-4 h-4" style={{ color: ACCENT_COLOR }} />
           </span>
           <Input
-            id="signin-id"
+            id="signin-mobile"
             data-ocid="login.identifier.input"
-            type={
-              method === "email"
-                ? "email"
-                : method === "mobile"
-                  ? "tel"
-                  : "text"
-            }
-            placeholder={placeholders[method]}
-            value={identifier}
+            type="tel"
+            placeholder="e.g. +91 9876543210"
+            value={mobile}
             onChange={(e) => {
-              setIdentifier(e.target.value);
+              setMobile(e.target.value);
               setError("");
             }}
             className="pl-9 rounded-xl border-border"
             style={INPUT_STYLE}
-            autoComplete="username"
+            autoComplete="tel"
           />
         </div>
       </div>
 
-      {/* Password */}
       <div>
         <label
           htmlFor="signin-pw"
@@ -450,7 +327,6 @@ function SignInPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
         />
       </div>
 
-      {/* Error */}
       <AnimatePresence>
         {error && (
           <motion.p
@@ -475,25 +351,18 @@ function SignInPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
         data-ocid="login.signin.submit_button"
         className="w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all hover:opacity-90"
         style={{
-          background: methodBtnGradient(method),
+          background: ACCENT_GRADIENT,
           color: "white",
           border: "none",
           fontFamily: "'Outfit', sans-serif",
         }}
       >
         <span className="flex items-center justify-center gap-2">
-          {method === "mobile" ? (
-            <Phone className="w-4 h-4" />
-          ) : method === "email" ? (
-            <Mail className="w-4 h-4" />
-          ) : (
-            <Facebook className="w-4 h-4" />
-          )}
+          <Phone className="w-4 h-4" />
           Sign In
         </span>
       </Button>
 
-      {/* Switch to Register */}
       <SwitchTabPrompt
         message="Don't have an account?"
         actionLabel="Create Account"
@@ -510,16 +379,15 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
   const { register, isRegistered } = useStudentAuth();
 
   const [step, setStep] = useState<RegisterStep>(1);
-  const [method, setMethod] = useState<MethodTab>("mobile");
 
   // Step 1
-  const [identifier, setIdentifier] = useState("");
+  const [mobile, setMobile] = useState("");
   const [step1Error, setStep1Error] = useState("");
 
   // Step 2
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
-  const [otpKey, setOtpKey] = useState(0); // for timer reset
+  const [otpKey, setOtpKey] = useState(0);
 
   // Step 3
   const [name, setName] = useState("");
@@ -529,40 +397,25 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
   const [grade, setGrade] = useState("");
   const [step3Error, setStep3Error] = useState("");
 
-  const totalSteps = method === "facebook" ? 2 : 3;
+  const totalSteps = 3;
 
-  const handleMethodChange = (m: MethodTab) => {
-    setMethod(m);
-    setIdentifier("");
-    setOtp("");
-    setStep1Error("");
-    setOtpError("");
-    if (step !== 1) setStep(1);
-  };
-
-  // Step 1 → next
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    const err = validateIdentifier(method, identifier);
+    const err = validateMobile(mobile);
     if (err) {
       setStep1Error(err);
       return;
     }
-    if (isRegistered(identifier.trim())) {
+    if (isRegistered(mobile.trim())) {
       setStep1Error(
-        "An account with this identifier already exists. Please sign in.",
+        "An account with this number already exists. Please sign in.",
       );
       return;
     }
-    if (method === "facebook") {
-      setStep(3);
-    } else {
-      setStep(2);
-    }
     setStep1Error("");
+    setStep(2);
   };
 
-  // Step 2 → verify OTP
   const handleVerifyOtp = (e: React.FormEvent) => {
     e.preventDefault();
     if (otp.length < 6) {
@@ -577,7 +430,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
     setStep(3);
   };
 
-  // Step 3 → create account
   const handleCreateAccount = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) {
@@ -597,15 +449,15 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
       return;
     }
 
-    const ph = hashPassword(identifier.trim(), password);
+    const ph = hashPassword(mobile.trim(), password);
     register({
       name: name.trim(),
-      identifier: identifier.trim(),
-      method,
+      identifier: mobile.trim(),
+      method: "mobile",
       passwordHash: ph,
       avatar,
       grade: grade.trim(),
-      otpVerified: method !== "facebook",
+      otpVerified: true,
       createdAt: new Date().toISOString(),
     });
     toast.success("Account created! Welcome to The Learning Hub 🎓", {
@@ -615,7 +467,7 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
 
   const handleBack = () => {
     if (step === 2) setStep(1);
-    else if (step === 3) setStep(method === "facebook" ? 1 : 2);
+    else if (step === 3) setStep(2);
   };
 
   const slideVariants = {
@@ -626,16 +478,9 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
 
   return (
     <div>
-      {/* Progress bar */}
-      <StepProgress step={step} total={totalSteps} method={method} />
-
-      {/* Step dots */}
+      <StepProgress step={step} total={totalSteps} />
       <div className="mt-3">
-        <StepDots
-          total={totalSteps}
-          current={method === "facebook" && step === 3 ? 2 : step}
-          method={method}
-        />
+        <StepDots total={totalSteps} current={step} />
       </div>
 
       <AnimatePresence mode="wait" custom={1}>
@@ -660,93 +505,34 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 Create Your Account
               </h3>
 
-              {/* Method sub-tabs */}
-              <div
-                className="flex rounded-xl p-1 gap-1"
-                style={{ background: "oklch(0.95 0.02 258)" }}
-              >
-                {METHOD_TABS.map((t) => (
-                  <button
-                    key={t.id}
-                    type="button"
-                    data-ocid={`login.${t.id}.tab`}
-                    onClick={() => handleMethodChange(t.id)}
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-xs font-semibold transition-all"
-                    style={{
-                      background: method === t.id ? "white" : "transparent",
-                      color:
-                        method === t.id
-                          ? methodColor(t.id)
-                          : "oklch(0.50 0.05 258)",
-                      boxShadow:
-                        method === t.id
-                          ? "0 1px 4px oklch(0 0 0 / 12%)"
-                          : "none",
-                      fontFamily: "'Outfit', sans-serif",
-                    }}
-                  >
-                    {t.icon}
-                    <span className="hidden sm:inline">{t.label}</span>
-                  </button>
-                ))}
-              </div>
-
               <div>
                 <label
-                  htmlFor="reg-id"
+                  htmlFor="reg-mobile"
                   className="block text-xs font-semibold mb-1.5"
                   style={LABEL_STYLE}
                 >
-                  {method === "mobile"
-                    ? "Mobile Number"
-                    : method === "email"
-                      ? "Email Address"
-                      : "Facebook Name / Username"}
+                  Mobile Number
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2">
-                    {method === "mobile" ? (
-                      <Phone
-                        className="w-4 h-4"
-                        style={{ color: methodColor("mobile") }}
-                      />
-                    ) : method === "email" ? (
-                      <Mail
-                        className="w-4 h-4"
-                        style={{ color: methodColor("email") }}
-                      />
-                    ) : (
-                      <Facebook
-                        className="w-4 h-4"
-                        style={{ color: methodColor("facebook") }}
-                      />
-                    )}
+                    <Phone
+                      className="w-4 h-4"
+                      style={{ color: ACCENT_COLOR }}
+                    />
                   </span>
                   <Input
-                    id="reg-id"
+                    id="reg-mobile"
                     data-ocid="login.identifier.input"
-                    type={
-                      method === "email"
-                        ? "email"
-                        : method === "mobile"
-                          ? "tel"
-                          : "text"
-                    }
-                    placeholder={
-                      method === "mobile"
-                        ? "e.g. +91 9876543210"
-                        : method === "email"
-                          ? "your@email.com"
-                          : "Facebook name or @username"
-                    }
-                    value={identifier}
+                    type="tel"
+                    placeholder="e.g. +91 9876543210"
+                    value={mobile}
                     onChange={(e) => {
-                      setIdentifier(e.target.value);
+                      setMobile(e.target.value);
                       setStep1Error("");
                     }}
                     className="pl-9 rounded-xl border-border"
                     style={INPUT_STYLE}
-                    autoComplete="username"
+                    autoComplete="tel"
                   />
                 </div>
               </div>
@@ -775,16 +561,15 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 data-ocid="login.step1.submit_button"
                 className="w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all hover:opacity-90"
                 style={{
-                  background: methodBtnGradient(method),
+                  background: ACCENT_GRADIENT,
                   color: "white",
                   border: "none",
                   fontFamily: "'Outfit', sans-serif",
                 }}
               >
-                {method === "facebook" ? "Continue" : "Send OTP"}
+                Send OTP
               </Button>
 
-              {/* Switch to Sign In — only on step 1 */}
               <SwitchTabPrompt
                 message="Already have an account?"
                 actionLabel="Sign In"
@@ -795,7 +580,7 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
           </motion.div>
         )}
 
-        {step === 2 && method !== "facebook" && (
+        {step === 2 && (
           <motion.div
             key="step2"
             custom={1}
@@ -838,12 +623,11 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 }}
               >
                 Enter the 6-digit OTP sent to{" "}
-                <span style={{ color: methodColor(method), fontWeight: 700 }}>
-                  {identifier}
+                <span style={{ color: ACCENT_COLOR, fontWeight: 700 }}>
+                  {mobile}
                 </span>
               </p>
 
-              {/* Demo OTP box */}
               <div
                 className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold"
                 style={{
@@ -898,7 +682,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                   setOtpKey((k) => k + 1);
                   toast.success("OTP resent! Demo OTP is still 123456");
                 }}
-                method={method}
               />
 
               <Button
@@ -906,7 +689,7 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 data-ocid="login.otp.verify_button"
                 className="w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all hover:opacity-90"
                 style={{
-                  background: methodBtnGradient(method),
+                  background: ACCENT_GRADIENT,
                   color: "white",
                   border: "none",
                   fontFamily: "'Outfit', sans-serif",
@@ -953,7 +736,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 </h3>
               </div>
 
-              {/* Avatar picker */}
               <div>
                 <p
                   className="text-xs font-semibold mb-2 text-center"
@@ -964,7 +746,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 <AvatarPicker selected={avatar} onSelect={setAvatar} />
               </div>
 
-              {/* Full name */}
               <div>
                 <label
                   htmlFor="reg-name"
@@ -989,7 +770,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label
                   htmlFor="reg-pw"
@@ -1013,7 +793,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 />
               </div>
 
-              {/* Confirm password */}
               <div>
                 <label
                   htmlFor="reg-cpw"
@@ -1032,7 +811,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                   placeholder="Repeat your password"
                   ocid="login.confirmpassword.input"
                 />
-                {/* Password match indicator */}
                 {confirmPassword.length > 0 && (
                   <p
                     className="text-xs mt-1"
@@ -1051,7 +829,6 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 )}
               </div>
 
-              {/* Grade/Class (optional) */}
               <div>
                 <label
                   htmlFor="reg-grade"
@@ -1101,7 +878,7 @@ function RegisterPanel({ onSwitchTab }: { onSwitchTab: () => void }) {
                 data-ocid="login.register.submit_button"
                 className="w-full py-3 rounded-xl font-bold text-sm shadow-md transition-all hover:opacity-90"
                 style={{
-                  background: methodBtnGradient(method),
+                  background: ACCENT_GRADIENT,
                   color: "white",
                   border: "none",
                   fontFamily: "'Outfit', sans-serif",
@@ -1143,13 +920,6 @@ export default function StudentLoginPage() {
               "radial-gradient(circle, oklch(0.52 0.24 160) 0%, transparent 70%)",
           }}
         />
-        <div
-          className="absolute top-1/2 left-[-40px] w-64 h-64 rounded-full opacity-8"
-          style={{
-            background:
-              "radial-gradient(circle, oklch(0.44 0.22 258) 0%, transparent 70%)",
-          }}
-        />
       </div>
 
       <motion.div
@@ -1158,22 +928,19 @@ export default function StudentLoginPage() {
         transition={{ duration: 0.5, ease: [0.34, 1.1, 0.64, 1] }}
         className="relative z-10 w-full max-w-md"
       >
-        {/* Card */}
         <div
           className="rounded-3xl overflow-hidden shadow-2xl"
           style={CARD_STYLE}
         >
-          {/* Top gradient strip */}
           <div
             className="h-1.5 w-full"
             style={{
               background:
-                "linear-gradient(90deg, oklch(0.52 0.24 160) 0%, oklch(0.55 0.26 80) 40%, oklch(0.44 0.22 258) 100%)",
+                "linear-gradient(90deg, oklch(0.36 0.18 155) 0%, oklch(0.52 0.24 160) 100%)",
             }}
           />
 
           <div className="px-7 pt-6 pb-7">
-            {/* Logo + title */}
             <div className="flex flex-col items-center text-center mb-6">
               <motion.div
                 initial={{ scale: 0.7, opacity: 0 }}
@@ -1204,7 +971,7 @@ export default function StudentLoginPage() {
               </p>
             </div>
 
-            {/* Top-level tabs: Sign In / Create Account */}
+            {/* Top-level tabs */}
             <div
               className="flex rounded-xl p-1 gap-1 mb-5"
               style={{ background: "oklch(0.95 0.02 258)" }}
@@ -1251,7 +1018,6 @@ export default function StudentLoginPage() {
               </button>
             </div>
 
-            {/* Panel content */}
             <AnimatePresence mode="wait">
               {topTab === "signin" ? (
                 <motion.div
@@ -1276,7 +1042,6 @@ export default function StudentLoginPage() {
               )}
             </AnimatePresence>
 
-            {/* Feature badges */}
             <div className="mt-5 flex flex-wrap justify-center gap-2">
               {["30 Daily Lessons", "Grammar Topics", "Stories", "Quiz"].map(
                 (label) => (
@@ -1297,7 +1062,6 @@ export default function StudentLoginPage() {
           </div>
         </div>
 
-        {/* Footer note */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

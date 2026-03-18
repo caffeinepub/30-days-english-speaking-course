@@ -1,18 +1,32 @@
-# Learning Point
+# The Learning Hub
 
 ## Current State
-The app has a fully built LearningHome page with hero, stats bar, module cards, and motivational banner. There are pages for Tenses, Phonics, Auxiliaries, Homophones, Vowels, and Quiz.
+The app has a ConversationsPage with school, party, and wedding dialogue tabs. There is no dedicated "Phrases" or "Daily Sentences" module.
 
 ## Requested Changes (Diff)
 
 ### Add
-- A YouTube Channel Poster section on the LearningHome page, displaying the uploaded QR code image prominently as a professional poster/banner with a "Scan to Visit Our YouTube Channel" call-to-action style design.
+- New `PhrasesPage.tsx` with 6 categories of daily-use sentences:
+  1. Outside / Public Places
+  2. Party
+  3. School
+  4. Friend Group
+  5. Home / Family
+  6. Office / Work
+- Each category has 12–15 bilingual (English + Hindi) sentences
+- New `phrases` value added to the `Section` type
+- New module card on LearningHome for "Daily Phrases"
+- New route in App.tsx for `phrases` section
 
 ### Modify
-- LearningHome.tsx: Add a new YouTube QR code poster section between the module cards and the motivational banner.
+- `LearningHome.tsx` – add phrases module card and update stats
+- `App.tsx` – add lazy import and route for PhrasesPage
 
 ### Remove
-- Nothing removed.
+- Nothing removed
 
 ## Implementation Plan
-1. Add a "YouTube Channel" poster section in LearningHome.tsx that displays the QR code image (/assets/uploads/WhatsApp-Image-2026-02-20-at-15.31.39-1-07-03-26-1.jpeg) in a professionally styled card/banner with YouTube branding colors and a scan CTA.
+1. Create `src/frontend/src/pages/PhrasesPage.tsx` with all content
+2. Update `Section` type in `LearningHome.tsx` to include `"phrases"`
+3. Add phrases module card in `modules` array in `LearningHome.tsx`
+4. Update `App.tsx`: lazy import PhrasesPage, add `case "phrases"` in renderSection

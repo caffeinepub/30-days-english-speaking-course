@@ -9,6 +9,7 @@ import {
   Link,
   MessageCircle,
   MessageSquare,
+  MessagesSquare,
   PlayCircle,
   Star,
   Trophy,
@@ -34,7 +35,8 @@ export type Section =
   | "stories"
   | "course"
   | "course-day"
-  | "chat";
+  | "chat"
+  | "phrases";
 
 interface Module {
   id: Section;
@@ -158,6 +160,17 @@ const modules: Module[] = [
     dataOcid: "home.conversations.card",
   },
   {
+    id: "phrases",
+    title: "Daily Phrases",
+    description:
+      "Everyday sentences for outside, party, school, friends, home, and office — in English and Hindi.",
+    icon: <MessagesSquare className="w-7 h-7" />,
+    count: "72 Phrases",
+    color: "oklch(0.50 0.24 140)",
+    bgColor: "oklch(0.93 0.10 140)",
+    dataOcid: "home.phrases.card",
+  },
+  {
     id: "course",
     title: "30 Days Course",
     description:
@@ -187,7 +200,7 @@ const stats = [
   { value: "20", label: "Homophone Pairs" },
   { value: "50+", label: "Quiz Questions" },
   { value: "30", label: "Day Course" },
-  { value: "6", label: "Stories" },
+  { value: "72", label: "Daily Phrases" },
 ];
 
 interface Props {
@@ -317,7 +330,7 @@ export default function LearningHome({ onNavigate }: Props) {
       {/* Stats Bar */}
       <div className="bg-card border-b border-border shadow-xs">
         <div className="max-w-5xl mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}

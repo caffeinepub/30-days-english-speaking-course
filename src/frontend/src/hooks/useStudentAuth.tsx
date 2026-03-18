@@ -7,17 +7,17 @@ import {
   useState,
 } from "react";
 
-export type LoginMethod = "mobile" | "email" | "facebook";
+export type LoginMethod = "mobile";
 
 export interface StudentProfile {
   name: string;
-  identifier: string; // phone, email, or FB handle
+  identifier: string; // phone number
   method: LoginMethod;
-  passwordHash: string; // btoa(identifier + "|" + password)
-  avatar: string; // e.g. "avatar-1" through "avatar-8"
-  grade: string; // optional, e.g. "Class 10" or ""
+  passwordHash: string;
+  avatar: string;
+  grade: string;
   otpVerified: boolean;
-  createdAt: string; // ISO timestamp
+  createdAt: string;
 }
 
 interface StudentAuthContext {

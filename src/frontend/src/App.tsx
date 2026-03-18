@@ -25,6 +25,7 @@ const InfinitivePage = lazy(() => import("./pages/InfinitivePage"));
 const LearningHome = lazy(() => import("./pages/LearningHome"));
 const NonInfinitivePage = lazy(() => import("./pages/NonInfinitivePage"));
 const PhonicsPage = lazy(() => import("./pages/PhonicsPage"));
+const PhrasesPage = lazy(() => import("./pages/PhrasesPage"));
 const QuizPage = lazy(() => import("./pages/QuizPage"));
 const StoriesPage = lazy(() => import("./pages/StoriesPage"));
 const StudentLoginPage = lazy(() => import("./pages/StudentLoginPage"));
@@ -177,6 +178,8 @@ function AppInner() {
         return <NonInfinitivePage />;
       case "conversations":
         return <ConversationsPage />;
+      case "phrases":
+        return <PhrasesPage />;
       case "stories":
         return <StoriesPage />;
       case "course":

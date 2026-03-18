@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1.25rem;
+
+    /* === The Learning Hub — Classic Elegant Theme === */
+    --background: 0.97 0.012 75; /* warm parchment cream */
+    --foreground: 0.15 0.04 255; /* deep navy ink */
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.04 255;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.04 255;
+
+    /* Deep navy primary */
+    --primary: 0.28 0.12 258;
+    --primary-foreground: 0.98 0 0;
+
+    /* Warm gold secondary */
+    --secondary: 0.92 0.06 78;
+    --secondary-foreground: 0.25 0.08 75;
+
+    --muted: 0.94 0.014 75;
+    --muted-foreground: 0.48 0.05 258;
+
+    /* Classic teal accent */
+    --accent: 0.9 0.06 195;
+    --accent-foreground: 0.22 0.12 200;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.018 75;
+    --input: 0.92 0.014 75;
+    --ring: 0.28 0.12 258;
+
+    /* Section colors — rich classic tones */
+    --tenses: 0.42 0.18 28;
+    --tenses-bg: 0.96 0.06 28;
+    --phonics: 0.38 0.16 175;
+    --phonics-bg: 0.94 0.07 175;
+    --auxiliaries: 0.35 0.16 258;
+    --auxiliaries-bg: 0.93 0.07 258;
+    --homophones: 0.42 0.18 320;
+    --homophones-bg: 0.95 0.06 320;
+    --vowels: 0.5 0.18 78;
+    --vowels-bg: 0.96 0.07 78;
+
+    --chart-1: 0.42 0.18 28;
+    --chart-2: 0.38 0.16 175;
+    --chart-3: 0.35 0.16 258;
+    --chart-4: 0.42 0.18 320;
+    --chart-5: 0.5 0.18 78;
+
+    --sidebar: 0.97 0.012 75;
+    --sidebar-foreground: 0.15 0.04 255;
+    --sidebar-primary: 0.28 0.12 258;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.9 0.06 195;
+    --sidebar-accent-foreground: 0.22 0.12 200;
+    --sidebar-border: 0.88 0.018 75;
+    --sidebar-ring: 0.28 0.12 258;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+
+  .font-body {
+    font-family: "Outfit", sans-serif;
+  }
+
+  /* Section color utilities */
+  .text-tenses {
+    color: oklch(var(--tenses));
+  }
+  .bg-tenses {
+    background-color: oklch(var(--tenses));
+  }
+  .bg-tenses-soft {
+    background-color: oklch(var(--tenses-bg));
+  }
+  .border-tenses {
+    border-color: oklch(var(--tenses) / 30%);
+  }
+
+  .text-phonics {
+    color: oklch(var(--phonics));
+  }
+  .bg-phonics {
+    background-color: oklch(var(--phonics));
+  }
+  .bg-phonics-soft {
+    background-color: oklch(var(--phonics-bg));
+  }
+  .border-phonics {
+    border-color: oklch(var(--phonics) / 30%);
+  }
+
+  .text-auxiliaries {
+    color: oklch(var(--auxiliaries));
+  }
+  .bg-auxiliaries {
+    background-color: oklch(var(--auxiliaries));
+  }
+  .bg-auxiliaries-soft {
+    background-color: oklch(var(--auxiliaries-bg));
+  }
+  .border-auxiliaries {
+    border-color: oklch(var(--auxiliaries) / 30%);
+  }
+
+  .text-homophones {
+    color: oklch(var(--homophones));
+  }
+  .bg-homophones {
+    background-color: oklch(var(--homophones));
+  }
+  .bg-homophones-soft {
+    background-color: oklch(var(--homophones-bg));
+  }
+  .border-homophones {
+    border-color: oklch(var(--homophones) / 30%);
+  }
+
+  .text-vowels {
+    color: oklch(var(--vowels));
+  }
+  .bg-vowels {
+    background-color: oklch(var(--vowels));
+  }
+  .bg-vowels-soft {
+    background-color: oklch(var(--vowels-bg));
+  }
+  .border-vowels {
+    border-color: oklch(var(--vowels) / 30%);
+  }
+
+  /* Hero gradient — classic deep navy → rich burgundy → warm gold */
+  .gradient-hero {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.12 258) 0%,
+      oklch(0.3 0.18 320) 45%,
+      oklch(0.4 0.16 40) 100%
+    );
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow
+      0.2s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 40px -8px oklch(0.28 0.12 258 / 20%);
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Dot grid background */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle,
+      oklch(0.85 0.12 78 / 35%) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.4s ease forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.05s;
+    opacity: 0;
+  }
+  .stagger-2 {
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+  .stagger-3 {
+    animation-delay: 0.15s;
+    opacity: 0;
+  }
+  .stagger-4 {
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+  .stagger-5 {
+    animation-delay: 0.25s;
+    opacity: 0;
+  }
+  .stagger-6 {
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+  .stagger-7 {
+    animation-delay: 0.35s;
+    opacity: 0;
+  }
+  .stagger-8 {
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+}
