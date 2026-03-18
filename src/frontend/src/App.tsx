@@ -4,7 +4,6 @@ import { Component, Suspense, lazy, useState } from "react";
 import type { ReactNode } from "react";
 import AppFooter from "./components/AppFooter";
 import AppNavBar from "./components/AppNavBar";
-import { StudentAuthProvider, useStudentAuth } from "./hooks/useStudentAuth";
 import type { Section } from "./pages/LearningHome";
 
 // Legacy type export — kept for backward compatibility with unused old pages
@@ -28,7 +27,6 @@ const PhonicsPage = lazy(() => import("./pages/PhonicsPage"));
 const PhrasesPage = lazy(() => import("./pages/PhrasesPage"));
 const QuizPage = lazy(() => import("./pages/QuizPage"));
 const StoriesPage = lazy(() => import("./pages/StoriesPage"));
-const StudentLoginPage = lazy(() => import("./pages/StudentLoginPage"));
 const TensesPage = lazy(() => import("./pages/TensesPage"));
 const VowelsPage = lazy(() => import("./pages/VowelsPage"));
 const ChatPage = lazy(() => import("./pages/ChatPage"));
@@ -133,21 +131,11 @@ const PageLoader = () => (
   </div>
 );
 
-// ─── Inner App (requires StudentAuthProvider) ─────────────────────────────
+// ─── Main App ─────────────────────────────────────────────────────────────
 
 function AppInner() {
-  const { isLoggedIn } = useStudentAuth();
   const [section, setSection] = useState<Section>("home");
   const [selectedCourseDay, setSelectedCourseDay] = useState<number>(1);
-
-  // Show login page if not authenticated
-  if (!isLoggedIn) {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <StudentLoginPage />
-      </Suspense>
-    );
-  }
 
   const handleNavigate = (target: Section) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -228,14 +216,12 @@ function AppInner() {
   );
 }
 
-// ─── Root App with Provider ────────────────────────────────────────────────
+// ─── Root App ────────────────────────────────────────────────────────────────
 
 export default function App() {
   return (
     <ErrorBoundary>
-      <StudentAuthProvider>
-        <AppInner />
-      </StudentAuthProvider>
+      <AppInner />
     </ErrorBoundary>
   );
 }

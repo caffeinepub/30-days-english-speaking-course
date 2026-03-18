@@ -203,6 +203,54 @@ const stats = [
   { value: "72", label: "Daily Phrases" },
 ];
 
+const whyEnglishPoints = [
+  {
+    emoji: "🌍",
+    titleEn: "Global Language",
+    titleHi: "विश्व भाषा",
+    descEn: "Spoken by 1.5 billion people worldwide.",
+    descHi: "दुनिया में 1.5 अरब लोग इसे बोलते हैं।",
+    color: "oklch(0.50 0.24 25)",
+    bgColor: "oklch(0.97 0.06 25)",
+  },
+  {
+    emoji: "💼",
+    titleEn: "Better Jobs",
+    titleHi: "बेहतर नौकरी",
+    descEn: "Opens doors to higher-paying careers.",
+    descHi: "बड़ी नौकरियों के अवसर मिलते हैं।",
+    color: "oklch(0.48 0.24 160)",
+    bgColor: "oklch(0.96 0.07 160)",
+  },
+  {
+    emoji: "📚",
+    titleEn: "Education",
+    titleHi: "शिक्षा",
+    descEn: "Most books, courses & research are in English.",
+    descHi: "अधिकतर किताबें और पाठ्यक्रम अंग्रेज़ी में हैं।",
+    color: "oklch(0.50 0.28 265)",
+    bgColor: "oklch(0.95 0.08 265)",
+  },
+  {
+    emoji: "✈️",
+    titleEn: "Travel & Culture",
+    titleHi: "यात्रा और संस्कृति",
+    descEn: "Communicate confidently anywhere in the world.",
+    descHi: "दुनिया में कहीं भी आत्मविश्वास से बात करें।",
+    color: "oklch(0.54 0.26 310)",
+    bgColor: "oklch(0.96 0.07 310)",
+  },
+  {
+    emoji: "🌐",
+    titleEn: "Online World",
+    titleHi: "इंटरनेट की भाषा",
+    descEn: "Over 55% of websites are in English.",
+    descHi: "55% से अधिक वेबसाइट अंग्रेज़ी में हैं।",
+    color: "oklch(0.52 0.24 80)",
+    bgColor: "oklch(0.96 0.08 80)",
+  },
+];
+
 interface Props {
   onNavigate: (section: Section) => void;
 }
@@ -350,6 +398,165 @@ export default function LearningHome({ onNavigate }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Why English is Important Section */}
+      <section
+        className="py-16 px-4 overflow-hidden"
+        style={{ background: "oklch(0.98 0.02 260)" }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            {/* Cartoon Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -48 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.7,
+                type: "spring",
+                stiffness: 100,
+                damping: 18,
+              }}
+              className="w-full lg:w-[45%] shrink-0"
+            >
+              <div className="relative">
+                {/* Decorative blob behind image */}
+                <div
+                  className="absolute -inset-4 rounded-3xl blur-2xl opacity-40"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.88 0.20 265), oklch(0.90 0.18 160))",
+                  }}
+                />
+                <div
+                  className="relative rounded-3xl overflow-hidden shadow-2xl border-4"
+                  style={{ borderColor: "oklch(0.85 0.14 265)" }}
+                >
+                  <img
+                    src="/assets/generated/school-students-cartoon.dim_600x350.png"
+                    alt="Cartoon school students learning English happily"
+                    className="w-full h-auto object-cover"
+                  />
+                  {/* Fun speech bubble overlay */}
+                  <div
+                    className="absolute bottom-4 left-4 px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+                    style={{
+                      background: "oklch(0.88 0.26 80)",
+                      color: "oklch(0.18 0.06 80)",
+                    }}
+                  >
+                    🎉 Let's Learn English!
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Why English Points Side */}
+            <div className="w-full lg:w-[55%]">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="mb-8"
+              >
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-3"
+                  style={{
+                    background: "oklch(0.93 0.10 265)",
+                    color: "oklch(0.40 0.24 265)",
+                  }}
+                >
+                  <span>⭐</span> Why Learn English?
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-extrabold text-foreground leading-tight mb-2">
+                  अंग्रेज़ी क्यों ज़रूरी है?
+                </h2>
+                <p className="font-body text-base text-muted-foreground">
+                  Discover why English opens doors to a better future / जानें क्यों
+                  अंग्रेज़ी आपके भविष्य को बेहतर बनाती है।
+                </p>
+              </motion.div>
+
+              <div className="flex flex-col gap-3">
+                {whyEnglishPoints.map((point, i) => (
+                  <motion.div
+                    key={point.titleEn}
+                    initial={{ opacity: 0, x: 32 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: 0.1 + i * 0.1,
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 180,
+                      damping: 20,
+                    }}
+                    className="flex items-start gap-4 p-4 rounded-2xl border shadow-sm hover:shadow-md transition-shadow"
+                    style={{
+                      background: point.bgColor,
+                      borderColor: `${point.color.replace("oklch(", "oklch(").split(")")[0]} / 25%)`,
+                    }}
+                  >
+                    {/* Emoji icon */}
+                    <div
+                      className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-sm"
+                      style={{ background: "white" }}
+                    >
+                      {point.emoji}
+                    </div>
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                        <span
+                          className="font-display text-base font-bold"
+                          style={{ color: point.color }}
+                        >
+                          {point.titleEn}
+                        </span>
+                        <span className="text-muted-foreground text-sm font-body">
+                          / {point.titleHi}
+                        </span>
+                      </div>
+                      <p className="font-body text-sm text-foreground leading-relaxed">
+                        {point.descEn}
+                      </p>
+                      <p
+                        className="font-body text-xs mt-0.5 leading-relaxed"
+                        style={{ color: "oklch(0.50 0.06 260)" }}
+                      >
+                        {point.descHi}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <motion.button
+                type="button"
+                onClick={() => onNavigate("course")}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7 }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                data-ocid="home.why_english.primary_button"
+                className="mt-6 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-base shadow-lg hover:shadow-xl transition-shadow"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.50 0.28 265), oklch(0.45 0.28 295))",
+                  color: "white",
+                }}
+              >
+                शुरू करें — Start 30-Day Course
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Module Cards */}
       <section className="py-16 px-4">
