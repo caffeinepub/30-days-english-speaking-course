@@ -4,7 +4,9 @@ import { Component, Suspense, lazy, useState } from "react";
 import type { ReactNode } from "react";
 import AppFooter from "./components/AppFooter";
 import AppNavBar from "./components/AppNavBar";
+import { StudentAuthProvider, useStudentAuth } from "./hooks/useStudentAuth";
 import type { Section } from "./pages/LearningHome";
+import StudentLoginPage from "./pages/StudentLoginPage";
 
 // Legacy type export — kept for backward compatibility with unused old pages
 export type AppPage =
@@ -134,8 +136,14 @@ const PageLoader = () => (
 // ─── Main App ─────────────────────────────────────────────────────────────
 
 function AppInner() {
+  const { isLoggedIn } = useStudentAuth();
   const [section, setSection] = useState<Section>("home");
   const [selectedCourseDay, setSelectedCourseDay] = useState<number>(1);
+
+  // Show login page if not logged in
+  if (!isLoggedIn) {
+    return <StudentLoginPage />;
+  }
 
   const handleNavigate = (target: Section) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -221,7 +229,9 @@ function AppInner() {
 export default function App() {
   return (
     <ErrorBoundary>
-      <AppInner />
+      <StudentAuthProvider>
+        <AppInner />
+      </StudentAuthProvider>
     </ErrorBoundary>
   );
 }
